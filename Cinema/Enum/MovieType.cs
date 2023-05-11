@@ -7,6 +7,7 @@
         ByCompany,
         ByActor,
         UserBooked,
+        UserCommented,
         Coming,
         Closed,
         InDay,

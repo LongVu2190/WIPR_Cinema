@@ -54,6 +54,9 @@
             this.Coming_btn = new System.Windows.Forms.Button();
             this.Comment_btn = new System.Windows.Forms.Button();
             this.Screen_tb = new System.Windows.Forms.ComboBox();
+            this.Expense_lb = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Commented_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +74,7 @@
             // Book_btn
             // 
             this.Book_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Book_btn.Location = new System.Drawing.Point(274, 412);
+            this.Book_btn.Location = new System.Drawing.Point(429, 410);
             this.Book_btn.Name = "Book_btn";
             this.Book_btn.Size = new System.Drawing.Size(90, 29);
             this.Book_btn.TabIndex = 15;
@@ -287,7 +290,7 @@
             // Booked_btn
             // 
             this.Booked_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Booked_btn.Location = new System.Drawing.Point(25, 412);
+            this.Booked_btn.Location = new System.Drawing.Point(22, 412);
             this.Booked_btn.Name = "Booked_btn";
             this.Booked_btn.Size = new System.Drawing.Size(90, 29);
             this.Booked_btn.TabIndex = 37;
@@ -310,8 +313,9 @@
             // 
             // Comment_btn
             // 
+            this.Comment_btn.Enabled = false;
             this.Comment_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Comment_btn.Location = new System.Drawing.Point(125, 412);
+            this.Comment_btn.Location = new System.Drawing.Point(329, 410);
             this.Comment_btn.Name = "Comment_btn";
             this.Comment_btn.Size = new System.Drawing.Size(90, 29);
             this.Comment_btn.TabIndex = 43;
@@ -335,11 +339,46 @@
             this.Screen_tb.Size = new System.Drawing.Size(141, 28);
             this.Screen_tb.TabIndex = 44;
             // 
+            // Expense_lb
+            // 
+            this.Expense_lb.AutoSize = true;
+            this.Expense_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Expense_lb.Location = new System.Drawing.Point(348, 369);
+            this.Expense_lb.Name = "Expense_lb";
+            this.Expense_lb.Size = new System.Drawing.Size(71, 20);
+            this.Expense_lb.TabIndex = 46;
+            this.Expense_lb.Text = "Expense";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(267, 369);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 20);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "Expense:";
+            // 
+            // Commented_btn
+            // 
+            this.Commented_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Commented_btn.Location = new System.Drawing.Point(121, 412);
+            this.Commented_btn.Name = "Commented_btn";
+            this.Commented_btn.Size = new System.Drawing.Size(106, 29);
+            this.Commented_btn.TabIndex = 47;
+            this.Commented_btn.Tag = "NoDel";
+            this.Commented_btn.Text = "Commented";
+            this.Commented_btn.UseVisualStyleBackColor = true;
+            this.Commented_btn.Click += new System.EventHandler(this.Commented_btn_Click);
+            // 
             // Cinema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 451);
+            this.Controls.Add(this.Commented_btn);
+            this.Controls.Add(this.Expense_lb);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.Screen_tb);
             this.Controls.Add(this.Comment_btn);
             this.Controls.Add(this.Coming_btn);
@@ -404,6 +443,9 @@
         private System.Windows.Forms.Button Coming_btn;
         private System.Windows.Forms.Button Comment_btn;
         private System.Windows.Forms.ComboBox Screen_tb;
+        private System.Windows.Forms.Label Expense_lb;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button Commented_btn;
     }
 }
 

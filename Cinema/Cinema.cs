@@ -1,4 +1,5 @@
 ﻿using Cinema.BS_Layer;
+using Cinema.DB_Layer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,7 @@ namespace Cinema
         public void CreateSeatsWidget()
         {
             User_Book = new List<int>();
+            Comment_btn.Enabled = false;
             ClearSeatButtons();
             movie = new Movie();
             for (int i = 0; i <= 28; i++)
@@ -114,6 +116,7 @@ namespace Cinema
             if (flag == MovieType.UserBooked)
             {
                 Reservation_ID = Movies_Data.Rows[r].Cells[0].Value.ToString();
+                Comment_btn.Enabled = true;
                 return;
             }
             ShowTime_ID = Movies_Data.Rows[r].Cells[0].Value.ToString();
@@ -144,21 +147,30 @@ namespace Cinema
         }
         private void Book_btn_Click(object sender, EventArgs e)
         {
-            if (User_Book.Count() == 0) return;
+            if (User_Book.Count() == 0)
+            {
+                MessageBox.Show("Please choose a seat", "Notification");
+                return;
+            }
 
             int cost = 0;
             bs.GetCost(ShowTime_ID, ref cost);
             cost = cost * User_Book.Count();
 
-            if (cost > cus.Balance)
+            if (cus.isVip)
             {
-                MessageBox.Show("You don't have enough money");
+                cost = cost * 80 / 100;
+            }
+
+            if (cost > cus.Balance && User_Book.Count > 1)
+            {
+                MessageBox.Show("You don't have enough money", "Notification");
                 return;
             }
             string result = $"Your total is {cost}";
             if (cus.isVip)
             {
-                result += $", VIP discount 20%, pay {cost * 0.8}";
+                result += $", VIP discount 20%, pay {cost}";
             }
             DialogResult dlr = MessageBox.Show(result, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
@@ -166,14 +178,12 @@ namespace Cinema
                 foreach (var seat in User_Book)
                 {
                     bs.BookMovie(cus.User_ID, ShowTime_ID, seat);
-                }
-                User_Book = new List<int>();
-                cus.Balance -= cost;
+                }               
                 bs.LoadUserInformation(cus.User_ID, ref cus);
                 LoadUserInformation();
-                MessageBox.Show("Booked Successfully");
+                MessageBox.Show("Booked Successfully", "Notification");
             }
-            
+            User_Book = new List<int>();
             ClearSeatButtons();
         }
         private void FindScreen_btn_Click(object sender, EventArgs e)
@@ -224,6 +234,14 @@ namespace Cinema
             Comment form = new Comment(Reservation_ID);
             form.ShowDialog();
             Reservation_ID = "";
+            Comment_btn.Enabled = false;
+        }
+        private void Commented_btn_Click(object sender, EventArgs e)
+        {
+            flag = MovieType.UserCommented;
+            Movies_Data.DataSource = bs.LoadMovies(flag, cus.User_ID);
+            Movies_Data.Invalidate();
+            ClearSeatButtons();
         }
     }
 }

@@ -42,5 +42,12 @@ namespace Cinema
         {
             new Register { }.ShowDialog();
         }
+        private void Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Login_btn_Click(sender, e);
+            }
+        }
     }
 }

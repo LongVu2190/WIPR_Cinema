@@ -51,6 +51,7 @@
             this.Password_tb.Name = "Password_tb";
             this.Password_tb.Size = new System.Drawing.Size(141, 29);
             this.Password_tb.TabIndex = 22;
+            this.Password_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Password_KeyDown);
             // 
             // Login_btn
             // 
