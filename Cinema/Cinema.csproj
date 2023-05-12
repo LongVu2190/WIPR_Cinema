@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BS_Layer\BL_Admin.cs" />
     <Compile Include="BS_Layer\BL_Cinema.cs" />
     <Compile Include="BS_Layer\BL_Login.cs" />
     <Compile Include="Cinema.cs">
@@ -78,6 +85,9 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cinema.resx">
       <DependentUpon>Cinema.cs</DependentUpon>
     </EmbeddedResource>

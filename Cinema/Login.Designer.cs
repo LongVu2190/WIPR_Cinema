@@ -34,6 +34,7 @@
             this.Register_btn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Admin_cb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // UserID_tb
@@ -97,11 +98,23 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "Password";
             // 
+            // Admin_cb
+            // 
+            this.Admin_cb.AutoSize = true;
+            this.Admin_cb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Admin_cb.Location = new System.Drawing.Point(274, 17);
+            this.Admin_cb.Name = "Admin_cb";
+            this.Admin_cb.Size = new System.Drawing.Size(73, 24);
+            this.Admin_cb.TabIndex = 34;
+            this.Admin_cb.Text = "Admin";
+            this.Admin_cb.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 166);
+            this.Controls.Add(this.Admin_cb);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Register_btn);
@@ -123,5 +136,6 @@
         private System.Windows.Forms.Button Register_btn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox Admin_cb;
     }
 }

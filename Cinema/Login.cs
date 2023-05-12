@@ -23,13 +23,24 @@ namespace Cinema
         private void Login_btn_Click(object sender, EventArgs e)
         {
             bool result = false;
-            bs.CustomerLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
 
+            if (Admin_cb.Checked)
+            {
+                bs.AdminLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+            }
+            else
+            {
+                bs.CustomerLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+            }
+           
             if (result) 
             {
                 MessageBox.Show("Login Successfully");
                 this.Hide();
-                new Cinema { cus = this.user }.ShowDialog();
+                if (Admin_cb.Checked)
+                    new Admin { admin = this.user }.ShowDialog();
+                else
+                    new Cinema { cus = this.user }.ShowDialog();
                 base.Close();
             }
             else

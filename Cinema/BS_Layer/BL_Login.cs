@@ -14,7 +14,11 @@ namespace Cinema.BS_Layer
         DBMain db = new DBMain();
 
         public BL_Login() { }
-
+        public void AdminLogin(string User_ID, string Password, ref User admin, ref bool result)
+        {
+            string sql = $"select * from Fn_AdminLogin('{User_ID}', '{Password}')";
+            db.AdminLogin(sql, ref admin, ref result);
+        }
         public void CustomerLogin(string User_ID, string Password, ref User cus, ref bool result)
         {
             string sql = $"select * from Fn_CustomerLogin('{User_ID}', '{Password}')";
