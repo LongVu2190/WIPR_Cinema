@@ -112,15 +112,28 @@ namespace Cinema
         private void Movies_Data_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int r = Movies_Data.CurrentCell.RowIndex;
-            if (r == Movies_Data.RowCount - 1) return;
-            if (flag == MovieType.UserBooked)
+            if (r == Movies_Data.RowCount - 1 || flag == MovieType.AllComments)
             {
+                ShowTime_ID = "";
+                ShowTime_ID_tb.Text = "";
+                Reservation_ID = "";
+                Reservation_ID_tb.Text = "";
+                return;
+            }
+            if (flag == MovieType.UserBooked || flag == MovieType.UserCommented)
+            {
+                ShowTime_ID = "";
+                ShowTime_ID_tb.Text = "";
                 Reservation_ID = Movies_Data.Rows[r].Cells[0].Value.ToString();
                 Comment_btn.Enabled = true;
+                Reservation_ID_tb.Text = Reservation_ID;
                 return;
             }
             ShowTime_ID = Movies_Data.Rows[r].Cells[0].Value.ToString();
             Booked_Seats = bs.LoadSeats(ShowTime_ID);
+            ShowTime_ID_tb.Text = ShowTime_ID;
+            Reservation_ID = "";
+            Reservation_ID_tb.Text = "";
             CreateSeatsWidget();
         }
         public void ClearSeatButtons()
@@ -144,6 +157,7 @@ namespace Cinema
             Balance_lb.Text = cus.Balance.ToString();
             Point_lb.Text = cus.Point.ToString();
             VIP_lb.Text = cus.isVip.ToString();
+            Expense_lb.Text = cus.Expense.ToString();
         }
         private void Book_btn_Click(object sender, EventArgs e)
         {
@@ -154,32 +168,23 @@ namespace Cinema
             }
 
             int cost = 0;
-            bs.GetCost(ShowTime_ID, ref cost);
-            cost = cost * User_Book.Count();
+            bs.SumTotalCost(ShowTime_ID, ref cost, cus.User_ID, User_Book.Count());
 
-            if (cus.isVip)
-            {
-                cost = cost * 80 / 100;
-            }
-
-            if (cost > cus.Balance && User_Book.Count > 1)
-            {
-                MessageBox.Show("You don't have enough money", "Notification");
-                return;
-            }
             string result = $"Your total is {cost}";
-            if (cus.isVip)
-            {
-                result += $", VIP discount 20%, pay {cost}";
-            }
+
             DialogResult dlr = MessageBox.Show(result, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
+                if (cost > cus.Balance && User_Book.Count > 1)
+                {
+                    MessageBox.Show("You don't have enough money", "Notification");
+                    return;
+                }
                 foreach (var seat in User_Book)
                 {
-                    bs.BookMovie(cus.User_ID, ShowTime_ID, seat);
+                    bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
                 }               
-                bs.LoadUserInformation(cus.User_ID, ref cus);
+                bs.UserInformation(cus.User_ID, ref cus);
                 LoadUserInformation();
                 MessageBox.Show("Booked Successfully", "Notification");
             }
@@ -240,6 +245,25 @@ namespace Cinema
         {
             flag = MovieType.UserCommented;
             Movies_Data.DataSource = bs.LoadMovies(flag, cus.User_ID);
+            Movies_Data.Invalidate();
+            ClearSeatButtons();
+        }
+        private void Rating_btn_Click(object sender, EventArgs e)
+        {
+            if (ShowTime_ID == "")
+            {
+                MessageBox.Show("Please choose a ShowTime", "Notification");
+                return;
+            }
+            flag = MovieType.MovieRating;
+            Movies_Data.DataSource = bs.LoadMovies(flag, ShowTime_ID);
+            Movies_Data.Invalidate();
+            ClearSeatButtons();
+        }
+        private void AllComment_btn_Click(object sender, EventArgs e)
+        {
+            flag = MovieType.AllComments;
+            Movies_Data.DataSource = bs.LoadMovies(flag, "");
             Movies_Data.Invalidate();
             ClearSeatButtons();
         }

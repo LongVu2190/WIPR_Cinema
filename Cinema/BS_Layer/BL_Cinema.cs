@@ -24,9 +24,6 @@ namespace Cinema.BS_Layer
             string sql = "";
             switch (flag)
             {
-                case MovieType.All:
-                    sql = "select * from ShowTime";
-                    return db.LoadMovies(sql);
                 case MovieType.ByScreen:
                     sql = $"select * from Fn_ShowTimeByScreen('{ID}')";
                     return db.LoadMovies(sql);
@@ -42,32 +39,38 @@ namespace Cinema.BS_Layer
                 case MovieType.UserCommented:
                     sql = $"select * from Fn_UserCommented('{ID}')";
                     return db.LoadMovies(sql);
+                case MovieType.MovieRating:
+                    sql = $"select * from Fn_MovieRating('{ID}')";
+                    return db.LoadMovies(sql);
                 case MovieType.InDay:
                     sql = "select * from View_ShowingInDay";
                     return db.LoadMovies(sql);
                 case MovieType.Coming:
                     sql = "select * from View_ComingShowing";
                     return db.LoadMovies(sql);
+                case MovieType.AllComments:
+                    sql = "select * from View_Comments";
+                    return db.LoadMovies(sql);              
                 default:
                     return null;
             }
         }
-        public void LoadUserInformation(string User_ID, ref User cus)
+        public void UserInformation(string User_ID, ref User cus)
         {
-            string sql = $"select Balance, Point, isVip from Customer where Customer.User_ID = '{User_ID}'";
-            db.GetUserInformation(sql, ref cus);
+            string sql = $"select * from Fn_UserInformation('{User_ID}')";
+            db.UserInformation(sql, ref cus);
         }
-        public void GetCost(string ShowTime_ID, ref int cost)
+        public void SumTotalCost(string ShowTime_ID, ref int cost, string User_ID, int Count)
         {
-            string sql = $"select Total_Cost from ShowTime where ShowTime_ID = '{ShowTime_ID}'";
-            db.GetCost(sql, ref cost);
+            string sql = $"select * from Fn_SumTotalCost('{ShowTime_ID}', '{User_ID}', '{Count}')";
+            db.SumTotalCost(sql, ref cost);
         }
-        public void BookMovie(string User_ID, string ShowTime_ID, int Seat)
+        public void AddReservation(string User_ID, string ShowTime_ID, int Seat)
         {
             string sql = $"exec Sp_AddReservation '{User_ID}', '{ShowTime_ID}', {Seat}";
             db.MyExecuteNonQuery(sql);   
         }
-        public void AddComment(int Reservation_ID, int Point, string Comment)
+        public void AddOrUpdateComment(int Reservation_ID, int Point, string Comment)
         {
             string sql = $"exec Sp_AddOrUpdateComment {Reservation_ID}, {Point}, N'{Comment}'";
             db.MyExecuteNonQuery(sql);

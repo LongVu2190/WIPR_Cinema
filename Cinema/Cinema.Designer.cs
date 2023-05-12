@@ -57,6 +57,10 @@
             this.Expense_lb = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.Commented_btn = new System.Windows.Forms.Button();
+            this.AllComment_btn = new System.Windows.Forms.Button();
+            this.Rating_btn = new System.Windows.Forms.Button();
+            this.ShowTime_ID_tb = new System.Windows.Forms.TextBox();
+            this.Reservation_ID_tb = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +78,7 @@
             // Book_btn
             // 
             this.Book_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Book_btn.Location = new System.Drawing.Point(429, 410);
+            this.Book_btn.Location = new System.Drawing.Point(412, 302);
             this.Book_btn.Name = "Book_btn";
             this.Book_btn.Size = new System.Drawing.Size(90, 29);
             this.Book_btn.TabIndex = 15;
@@ -181,7 +185,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(21, 313);
+            this.label12.Location = new System.Drawing.Point(15, 354);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(30, 20);
             this.label12.TabIndex = 26;
@@ -191,7 +195,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 342);
+            this.label4.Location = new System.Drawing.Point(15, 383);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 20);
             this.label4.TabIndex = 27;
@@ -201,7 +205,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 371);
+            this.label5.Location = new System.Drawing.Point(15, 412);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 28;
@@ -211,7 +215,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(267, 313);
+            this.label6.Location = new System.Drawing.Point(261, 354);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 20);
             this.label6.TabIndex = 29;
@@ -221,17 +225,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(267, 340);
+            this.label7.Location = new System.Drawing.Point(261, 383);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 20);
+            this.label7.Size = new System.Drawing.Size(90, 20);
             this.label7.TabIndex = 30;
-            this.label7.Text = "VIP:";
+            this.label7.Text = "VIP (-20%):";
             // 
             // ID_lb
             // 
             this.ID_lb.AutoSize = true;
             this.ID_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID_lb.Location = new System.Drawing.Point(57, 313);
+            this.ID_lb.Location = new System.Drawing.Point(51, 354);
             this.ID_lb.Name = "ID_lb";
             this.ID_lb.Size = new System.Drawing.Size(26, 20);
             this.ID_lb.TabIndex = 31;
@@ -241,7 +245,7 @@
             // 
             this.Name_lb.AutoSize = true;
             this.Name_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name_lb.Location = new System.Drawing.Point(82, 342);
+            this.Name_lb.Location = new System.Drawing.Point(76, 383);
             this.Name_lb.Name = "Name_lb";
             this.Name_lb.Size = new System.Drawing.Size(51, 20);
             this.Name_lb.TabIndex = 32;
@@ -251,7 +255,7 @@
             // 
             this.Balance_lb.AutoSize = true;
             this.Balance_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Balance_lb.Location = new System.Drawing.Point(98, 371);
+            this.Balance_lb.Location = new System.Drawing.Point(92, 412);
             this.Balance_lb.Name = "Balance_lb";
             this.Balance_lb.Size = new System.Drawing.Size(67, 20);
             this.Balance_lb.TabIndex = 33;
@@ -261,7 +265,7 @@
             // 
             this.Point_lb.AutoSize = true;
             this.Point_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Point_lb.Location = new System.Drawing.Point(319, 313);
+            this.Point_lb.Location = new System.Drawing.Point(313, 354);
             this.Point_lb.Name = "Point_lb";
             this.Point_lb.Size = new System.Drawing.Size(45, 20);
             this.Point_lb.TabIndex = 34;
@@ -271,7 +275,7 @@
             // 
             this.VIP_lb.AutoSize = true;
             this.VIP_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VIP_lb.Location = new System.Drawing.Point(319, 340);
+            this.VIP_lb.Location = new System.Drawing.Point(351, 383);
             this.VIP_lb.Name = "VIP_lb";
             this.VIP_lb.Size = new System.Drawing.Size(35, 20);
             this.VIP_lb.TabIndex = 35;
@@ -290,9 +294,9 @@
             // Booked_btn
             // 
             this.Booked_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Booked_btn.Location = new System.Drawing.Point(22, 412);
+            this.Booked_btn.Location = new System.Drawing.Point(1116, 331);
             this.Booked_btn.Name = "Booked_btn";
-            this.Booked_btn.Size = new System.Drawing.Size(90, 29);
+            this.Booked_btn.Size = new System.Drawing.Size(140, 29);
             this.Booked_btn.TabIndex = 37;
             this.Booked_btn.Tag = "NoDel";
             this.Booked_btn.Text = "Booked";
@@ -315,9 +319,9 @@
             // 
             this.Comment_btn.Enabled = false;
             this.Comment_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Comment_btn.Location = new System.Drawing.Point(329, 410);
+            this.Comment_btn.Location = new System.Drawing.Point(14, 302);
             this.Comment_btn.Name = "Comment_btn";
-            this.Comment_btn.Size = new System.Drawing.Size(90, 29);
+            this.Comment_btn.Size = new System.Drawing.Size(100, 29);
             this.Comment_btn.TabIndex = 43;
             this.Comment_btn.Tag = "NoDel";
             this.Comment_btn.Text = "Comment";
@@ -343,7 +347,7 @@
             // 
             this.Expense_lb.AutoSize = true;
             this.Expense_lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Expense_lb.Location = new System.Drawing.Point(348, 369);
+            this.Expense_lb.Location = new System.Drawing.Point(342, 412);
             this.Expense_lb.Name = "Expense_lb";
             this.Expense_lb.Size = new System.Drawing.Size(71, 20);
             this.Expense_lb.TabIndex = 46;
@@ -353,7 +357,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(267, 369);
+            this.label10.Location = new System.Drawing.Point(261, 412);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 20);
             this.label10.TabIndex = 45;
@@ -362,20 +366,66 @@
             // Commented_btn
             // 
             this.Commented_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Commented_btn.Location = new System.Drawing.Point(121, 412);
+            this.Commented_btn.Location = new System.Drawing.Point(1116, 371);
             this.Commented_btn.Name = "Commented_btn";
-            this.Commented_btn.Size = new System.Drawing.Size(106, 29);
+            this.Commented_btn.Size = new System.Drawing.Size(140, 29);
             this.Commented_btn.TabIndex = 47;
             this.Commented_btn.Tag = "NoDel";
             this.Commented_btn.Text = "Commented";
             this.Commented_btn.UseVisualStyleBackColor = true;
             this.Commented_btn.Click += new System.EventHandler(this.Commented_btn_Click);
             // 
+            // AllComment_btn
+            // 
+            this.AllComment_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllComment_btn.Location = new System.Drawing.Point(1116, 412);
+            this.AllComment_btn.Name = "AllComment_btn";
+            this.AllComment_btn.Size = new System.Drawing.Size(140, 29);
+            this.AllComment_btn.TabIndex = 48;
+            this.AllComment_btn.Tag = "NoDel";
+            this.AllComment_btn.Text = "All Comments";
+            this.AllComment_btn.UseVisualStyleBackColor = true;
+            this.AllComment_btn.Click += new System.EventHandler(this.AllComment_btn_Click);
+            // 
+            // Rating_btn
+            // 
+            this.Rating_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rating_btn.Location = new System.Drawing.Point(12, 9);
+            this.Rating_btn.Name = "Rating_btn";
+            this.Rating_btn.Size = new System.Drawing.Size(100, 29);
+            this.Rating_btn.TabIndex = 49;
+            this.Rating_btn.Tag = "NoDel";
+            this.Rating_btn.Text = "Rating";
+            this.Rating_btn.UseVisualStyleBackColor = true;
+            this.Rating_btn.Click += new System.EventHandler(this.Rating_btn_Click);
+            // 
+            // ShowTime_ID_tb
+            // 
+            this.ShowTime_ID_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowTime_ID_tb.Location = new System.Drawing.Point(120, 8);
+            this.ShowTime_ID_tb.Name = "ShowTime_ID_tb";
+            this.ShowTime_ID_tb.ReadOnly = true;
+            this.ShowTime_ID_tb.Size = new System.Drawing.Size(44, 29);
+            this.ShowTime_ID_tb.TabIndex = 50;
+            // 
+            // Reservation_ID_tb
+            // 
+            this.Reservation_ID_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reservation_ID_tb.Location = new System.Drawing.Point(120, 302);
+            this.Reservation_ID_tb.Name = "Reservation_ID_tb";
+            this.Reservation_ID_tb.ReadOnly = true;
+            this.Reservation_ID_tb.Size = new System.Drawing.Size(44, 29);
+            this.Reservation_ID_tb.TabIndex = 51;
+            // 
             // Cinema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 451);
+            this.Controls.Add(this.Reservation_ID_tb);
+            this.Controls.Add(this.ShowTime_ID_tb);
+            this.Controls.Add(this.Rating_btn);
+            this.Controls.Add(this.AllComment_btn);
             this.Controls.Add(this.Commented_btn);
             this.Controls.Add(this.Expense_lb);
             this.Controls.Add(this.label10);
@@ -405,6 +455,7 @@
             this.Controls.Add(this.FindScreen_btn);
             this.Controls.Add(this.Book_btn);
             this.Controls.Add(this.Movies_Data);
+            this.MaximizeBox = false;
             this.Name = "Cinema";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cinema";
@@ -446,6 +497,10 @@
         private System.Windows.Forms.Label Expense_lb;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button Commented_btn;
+        private System.Windows.Forms.Button AllComment_btn;
+        private System.Windows.Forms.Button Rating_btn;
+        private System.Windows.Forms.TextBox ShowTime_ID_tb;
+        private System.Windows.Forms.TextBox Reservation_ID_tb;
     }
 }
 

@@ -2,7 +2,6 @@
 {
     enum MovieType
     {
-        All,
         ByScreen,
         ByCompany,
         ByActor,
@@ -11,5 +10,7 @@
         Coming,
         Closed,
         InDay,
+        AllComments,
+        MovieRating,
     }
 }
