@@ -35,6 +35,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Admin_cb = new System.Windows.Forms.CheckBox();
+            this.Password_cb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // UserID_tb
@@ -53,6 +54,7 @@
             this.Password_tb.Size = new System.Drawing.Size(141, 29);
             this.Password_tb.TabIndex = 22;
             this.Password_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Password_KeyDown);
+            this.Password_tb.UseSystemPasswordChar = true;
             // 
             // Login_btn
             // 
@@ -109,11 +111,24 @@
             this.Admin_cb.Text = "Admin";
             this.Admin_cb.UseVisualStyleBackColor = true;
             // 
+            // Password_cb
+            // 
+            this.Password_cb.AutoSize = true;
+            this.Password_cb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Password_cb.Location = new System.Drawing.Point(107, 133);
+            this.Password_cb.Name = "Password_cb";
+            this.Password_cb.Size = new System.Drawing.Size(141, 24);
+            this.Password_cb.TabIndex = 35;
+            this.Password_cb.Text = "Show Password";
+            this.Password_cb.UseVisualStyleBackColor = true;
+            this.Password_cb.Click += new System.EventHandler(this.Password_cb_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 166);
+            this.Controls.Add(this.Password_cb);
             this.Controls.Add(this.Admin_cb);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
@@ -137,5 +152,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox Admin_cb;
+        private System.Windows.Forms.CheckBox Password_cb;
     }
 }

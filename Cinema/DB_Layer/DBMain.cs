@@ -21,7 +21,7 @@ namespace Cinema.DB_Layer
         {
             con = new SqlConnection(strConnectionString);
         }
-        public DataTable LoadMovies(string sql)
+        public DataTable LoadData(string sql)
         {
             sql_data = new SqlDataAdapter(sql, con);
             data = new DataTable();
@@ -133,30 +133,6 @@ namespace Cinema.DB_Layer
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
-        }
-        public bool ExecuteNoTable(string SQL)
-        {
-            bool b = false;
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = SQL;
-            cmd.CommandType = CommandType.Text;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                b = true;
-            }
-            catch (SqlException ex)
-            {
-
-            }
-            finally
-            {
-                con.Close();
-            }
-            return b;
         }
     }
 }

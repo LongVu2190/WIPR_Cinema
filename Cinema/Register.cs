@@ -37,9 +37,9 @@ namespace Cinema
                 MessageBox.Show("Created Successfully");
                 base.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed");
+                MessageBox.Show(ex.Message, "Notification");
             }
         }
     }

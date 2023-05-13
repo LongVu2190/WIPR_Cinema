@@ -10,92 +10,88 @@ namespace Cinema.BS_Layer
 {
     internal class BL_Admin
     {
-        public BL_Admin() { }
-        DBMain Main = new DBMain();
-        public bool AddRES(string User, string ShowID, int Seat)
+        public BL_Admin()
+        {
+
+        }
+        DBMain db = new DBMain();
+        public void AddReservation(string User, string ShowID, int Seat)
         {
             string sql = $"exec Sp_AddReservation '{User}', '{ShowID}', '{Seat}";
-            return Main.ExecuteNoTable(sql);
+            db.MyExecuteNonQuery(sql);
         }
-        public bool AddShowTime(string ShowTimeID, string MovieID, string Date, string Start, string RoomID)
-        {
-            string sql = $"EXEC Sp_AddNewShowTime '{ShowTimeID}', '{MovieID}', '{Date}', '{Start}', '{RoomID}'";
-            return Main.ExecuteNoTable(sql);
-        }
-        public bool AddMov(string ID, string Name, int Cost, string Time, string Actor, string Direc, string ComID)
-        {
-            string sql = $"EXEC Sp_AddNewMovie '{ID}', N'{Name}', '{Cost}', '{Time}', N'{Actor}', N'{Direc}', '{ComID}'";
-            return Main.ExecuteNoTable(sql);
-        }
-        public bool DelRES(int ID)
+        public void DeleteReservation(int ID)
         {
             string sql = $"exec Sp_DelReservation '{ID}'";
-            return Main.ExecuteNoTable(sql);
+            db.MyExecuteNonQuery(sql);
         }
-        public DataTable ShowTime()
+        public void Recharge(string User_ID, int money)
         {
-            string sql = "select * from ShowTime";
-            return Main.LoadMovies(sql);
+            string sql = $"update Customer set Balance = Balance + {money} where User_ID = '{User_ID}'";
+            db.MyExecuteNonQuery(sql);
         }
-        public DataTable Movies()
+        public void AddShowTime(string ShowTimeID, string MovieID, string Date, string Start, string RoomID)
         {
-            string sql = "select * from Movie";
-            return Main.LoadMovies(sql);
+            string sql = $"EXEC Sp_AddNewShowTime '{ShowTimeID}', '{MovieID}', '{Date}', '{Start}', '{RoomID}'";
+            db.MyExecuteNonQuery(sql);
         }
-        public DataTable Res()
+        public void AddMovie(string ID, string Name, int Cost, string Time, string Actor, string Direc, string ComID)
         {
-            string sql = "select * from Reservation";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable Emp()
+            string sql = $"EXEC Sp_AddNewMovie '{ID}', N'{Name}', '{Cost}', '{Time}', N'{Actor}', N'{Direc}', '{ComID}'";
+            db.MyExecuteNonQuery(sql);
+        }       
+        public DataTable LoadData(AdminType type)
         {
-            string sql = "select * from User_Information A inner join Admin B on A.User_ID = B.User_ID";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable KH()
-        {
-            string sql = "select * from User_Information A inner join Customer B on A.User_ID = B.User_ID";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ISVIP()
-        {
-            string sql = "select * from View_isVIP";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable NoVIP()
-        {
-            string sql = "select * from View_isNotVIP";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ShowingInDay()
-        {
-            string sql = "select * from View_ShowingInDay";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ComingShow()
-        {
-            string sql = "select * from View_ComingShowing";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ClosedShow()
-        {
-            string sql = "select * from View_ClosedShowing";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ShowInDayAva()
-        {
-            string sql = "select * from View_ShowingInDayAvailable";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable ShowInDayOut()
-        {
-            string sql = "select * from View_ShowingInDayOut";
-            return Main.LoadMovies(sql);
-        }
-        public DataTable highRatingShow()
-        {
-            string sql = "select * from View_HighRatingShowing";
-            return Main.LoadMovies(sql);
+            string sql = "";
+            switch (type) 
+            {
+                case AdminType.isVIP:
+                    sql = "select * from View_isVIP";
+                    break;
+                case AdminType.isNotVIP:
+                    sql = "select * from View_isNotVIP";
+                    break;
+                case AdminType.ShowingInDay:
+                    sql = "select * from View_ShowingInDay";
+                    break;
+                case AdminType.ComingShowing:
+                    sql = "select * from View_ComingShowing";
+                    break;
+                case AdminType.ClosedShowing:
+                    sql = "select * from View_ClosedShowing";
+                    break;
+                case AdminType.ShowingInDayAvailable:
+                    sql = "select * from View_ShowingInDayAvailable";
+                    break;
+                case AdminType.ShowingInDayOut:
+                    sql = "select * from View_ShowingInDayAvailable";
+                    break;
+                case AdminType.HighRatingShowing:
+                    sql = "select * from View_HighRatingShowing";
+                    break;
+                case AdminType.Reservation:
+                    sql = "select * from Reservation";
+                    break;
+                case AdminType.AllShowTime:
+                    sql = "select * from ShowTime";
+                    break;
+                case AdminType.AllMovies:
+                    sql = "select * from Movie";
+                    break;
+                case AdminType.AdminInformation:
+                    sql = "select * from User_Information A inner join Admin B on A.User_ID = B.User_ID";
+                    break;
+                case AdminType.CustomerInformation:
+                    sql = "select * from User_Information A inner join Customer B on A.User_ID = B.User_ID";
+                    break;
+                case AdminType.Company:
+                    sql = "select * from Company";
+                    break;
+                case AdminType.Room:
+                    sql = "select * from Room";
+                    break;
+            }
+            return db.LoadData(sql);
         }
     }
 }

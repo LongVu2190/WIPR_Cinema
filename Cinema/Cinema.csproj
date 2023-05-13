@@ -67,6 +67,7 @@
     <Compile Include="Comment.Designer.cs">
       <DependentUpon>Comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enum\AdminType.cs" />
     <Compile Include="Enum\MovieType.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="DB_Layer\DBMain.cs" />

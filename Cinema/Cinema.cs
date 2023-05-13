@@ -16,14 +16,11 @@ namespace Cinema
     public partial class Cinema : Form
     {
         public User cus;
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
 
         BL_Cinema bs = new BL_Cinema();
         Movie movie;
         List<int> Booked_Seats = new List<int>();
-        List<int> User_Book = new List<int>();
+        List<int> User_Booked = new List<int>();
 
         string ShowTime_ID = "";
         string Reservation_ID = "";
@@ -32,19 +29,25 @@ namespace Cinema
         public Cinema()
         {
             InitializeComponent();
-            //AllocConsole();
         }
         private void Cinema_Load(object sender, EventArgs e)
         {
-            Movies_Data.DataSource = bs.LoadMovies(flag, "");
+            try
+            {
+                Movies_Data.DataSource = bs.LoadMovies(flag, "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
             LoadUserInformation();
         }
-        public void CreateSeatsWidget()
+        private void CreateSeatsWidget()
         {
-            User_Book = new List<int>();
+            User_Booked = new List<int>();
             Comment_btn.Enabled = false;
-            ClearSeatButtons();
             movie = new Movie();
+            ClearSeatButtons();
             for (int i = 0; i <= 28; i++)
             {
                 movie.SEATS.Add(0);
@@ -90,7 +93,21 @@ namespace Cinema
                 Count++;
             }
         }
-        public void SeatClick(object sender, EventArgs e)
+        private void ClearSeatButtons()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is Button)
+                    {
+                        if (!String.Equals(ctrl.Tag, "NoDel"))
+                            this.Controls.Remove(ctrl);
+                    }
+                }
+            }
+        }
+        private void SeatClick(object sender, EventArgs e)
         {
             Button bt = sender as Button;
             if (bt.BackColor == Color.IndianRed)
@@ -99,15 +116,14 @@ namespace Cinema
             }
             else if (bt.BackColor == Color.ForestGreen)
             {
-                User_Book.Remove(Convert.ToInt32(bt.Text));
+                User_Booked.Remove(Convert.ToInt32(bt.Text));
                 bt.BackColor = Color.LightSlateGray;
             }
             else
             {
-                User_Book.Add(Convert.ToInt32(bt.Text));
+                User_Booked.Add(Convert.ToInt32(bt.Text));
                 bt.BackColor = Color.ForestGreen;
             }
-            Console.WriteLine(User_Book.Count());
         }
         private void Movies_Data_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -130,27 +146,20 @@ namespace Cinema
                 return;
             }
             ShowTime_ID = Movies_Data.Rows[r].Cells[0].Value.ToString();
-            Booked_Seats = bs.LoadSeats(ShowTime_ID);
+            try
+            {
+                Booked_Seats = bs.LoadSeats(ShowTime_ID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
             ShowTime_ID_tb.Text = ShowTime_ID;
             Reservation_ID = "";
             Reservation_ID_tb.Text = "";
             CreateSeatsWidget();
         }
-        public void ClearSeatButtons()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                foreach (Control ctrl in this.Controls)
-                {
-                    if (ctrl is Button)
-                    {
-                        if (!String.Equals(ctrl.Tag, "NoDel"))
-                            this.Controls.Remove(ctrl);
-                    }
-                }
-            }
-        }
-        public void LoadUserInformation()
+        private void LoadUserInformation()
         {
             ID_lb.Text = cus.User_ID.ToString();
             Name_lb.Text = cus.Name.ToString();
@@ -161,75 +170,104 @@ namespace Cinema
         }
         private void Book_btn_Click(object sender, EventArgs e)
         {
-            if (User_Book.Count() == 0)
+            int total_cost = 0;
+            if (User_Booked.Count() == 0)
             {
                 MessageBox.Show("Please choose a seat", "Notification");
                 return;
             }
+            try
+            {
+                bs.SumTotalCost(ShowTime_ID, ref total_cost, cus.User_ID, User_Booked.Count());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
 
-            int cost = 0;
-            bs.SumTotalCost(ShowTime_ID, ref cost, cus.User_ID, User_Book.Count());
-
-            string result = $"Your total is {cost}";
-
-            DialogResult dlr = MessageBox.Show(result, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult dlr = MessageBox.Show($"Your total is {total_cost}", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
-                if (cost > cus.Balance && User_Book.Count > 1)
+                if (total_cost > cus.Balance && User_Booked.Count > 1)
                 {
                     MessageBox.Show("You don't have enough money", "Notification");
                     return;
                 }
-                foreach (var seat in User_Book)
+                try
                 {
-                    bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
-                }               
-                bs.UserInformation(cus.User_ID, ref cus);
-                LoadUserInformation();
-                MessageBox.Show("Booked Successfully", "Notification");
+                    bs.SumTotalCost(ShowTime_ID, ref total_cost, cus.User_ID, User_Booked.Count());
+                    foreach (var seat in User_Booked)
+                    {
+                        bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
+                    }
+                    bs.UserInformation(cus.User_ID, ref cus);
+                    LoadUserInformation();
+                    MessageBox.Show("Booked Successfully", "Notification");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
             }
-            User_Book = new List<int>();
+            User_Booked = new List<int>();
             ClearSeatButtons();
         }
-        private void FindScreen_btn_Click(object sender, EventArgs e)
+        private void Finder_click(object sender, EventArgs e)
         {
-            flag = MovieType.ByScreen;
-            Movies_Data.DataSource = bs.LoadMovies(flag, Screen_tb.Text);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void FindCompany_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.ByCompany;
-            Movies_Data.DataSource = bs.LoadMovies(flag, Company_tb.Text);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void FindActor_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.ByActor;
-            Movies_Data.DataSource = bs.LoadMovies(flag, Actor_tb.Text);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void InDay_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.InDay;
-            Movies_Data.DataSource = bs.LoadMovies(flag, "");
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void Booked_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.UserBooked;
-            Movies_Data.DataSource = bs.LoadMovies(flag, cus.User_ID);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void Coming_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.Coming;
-            Movies_Data.DataSource = bs.LoadMovies(flag, "");
+            Button bt = sender as Button;
+            string type = "";
+            switch (bt.Name)
+            {
+                case "FindScreen_btn":
+                    flag = MovieType.ByScreen;
+                    type = Screen_tb.Text;
+                    break;
+                case "FindCompany_btn":
+                    flag = MovieType.ByCompany;
+                    type = Company_tb.Text;
+                    break;
+                case "FindActor_btn":
+                    flag = MovieType.ByActor;
+                    type = Actor_tb.Text;
+                    break;
+                case "InDay_btn":
+                    flag = MovieType.InDay;
+                    break;
+                case "Coming_btn":
+                    flag = MovieType.Coming;
+                    break;
+                case "Commented_btn":
+                    flag = MovieType.UserBooked;
+                    type = cus.User_ID;
+                    break;
+                case "UserCommented":
+                    flag = MovieType.UserBooked;
+                    type = cus.User_ID;
+                    break;
+                case "AllComment_btn":
+                    flag = MovieType.AllComments;
+                    break;
+                case "Rating_btn":
+                    if (ShowTime_ID == "")
+                    {
+                        MessageBox.Show("Please choose a ShowTime", "Notification");
+                        return;
+                    }
+                    flag = MovieType.MovieRating;
+                    type = ShowTime_ID;
+                    break;
+                default:
+                    flag = MovieType.Coming;
+                    break;
+            }
+            try
+            {
+                Movies_Data.DataSource = bs.LoadMovies(flag, type);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
             Movies_Data.Invalidate();
             ClearSeatButtons();
         }
@@ -240,32 +278,6 @@ namespace Cinema
             form.ShowDialog();
             Reservation_ID = "";
             Comment_btn.Enabled = false;
-        }
-        private void Commented_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.UserCommented;
-            Movies_Data.DataSource = bs.LoadMovies(flag, cus.User_ID);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void Rating_btn_Click(object sender, EventArgs e)
-        {
-            if (ShowTime_ID == "")
-            {
-                MessageBox.Show("Please choose a ShowTime", "Notification");
-                return;
-            }
-            flag = MovieType.MovieRating;
-            Movies_Data.DataSource = bs.LoadMovies(flag, ShowTime_ID);
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
-        }
-        private void AllComment_btn_Click(object sender, EventArgs e)
-        {
-            flag = MovieType.AllComments;
-            Movies_Data.DataSource = bs.LoadMovies(flag, "");
-            Movies_Data.Invalidate();
-            ClearSeatButtons();
         }
     }
 }

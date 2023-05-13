@@ -97,7 +97,7 @@
             this.FindScreen_btn.Tag = "NoDel";
             this.FindScreen_btn.Text = "Find";
             this.FindScreen_btn.UseVisualStyleBackColor = true;
-            this.FindScreen_btn.Click += new System.EventHandler(this.FindScreen_btn_Click);
+            this.FindScreen_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // FindCompany_btn
             // 
@@ -109,7 +109,7 @@
             this.FindCompany_btn.Tag = "NoDel";
             this.FindCompany_btn.Text = "Find";
             this.FindCompany_btn.UseVisualStyleBackColor = true;
-            this.FindCompany_btn.Click += new System.EventHandler(this.FindCompany_btn_Click);
+            this.FindCompany_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // Company_tb
             // 
@@ -129,7 +129,7 @@
             this.FindActor_btn.Tag = "NoDel";
             this.FindActor_btn.Text = "Find";
             this.FindActor_btn.UseVisualStyleBackColor = true;
-            this.FindActor_btn.Click += new System.EventHandler(this.FindActor_btn_Click);
+            this.FindActor_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // Actor_tb
             // 
@@ -149,7 +149,7 @@
             this.InDay_btn.Tag = "NoDel";
             this.InDay_btn.Text = "In Day";
             this.InDay_btn.UseVisualStyleBackColor = true;
-            this.InDay_btn.Click += new System.EventHandler(this.InDay_btn_Click);
+            this.InDay_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // label1
             // 
@@ -301,7 +301,7 @@
             this.Booked_btn.Tag = "NoDel";
             this.Booked_btn.Text = "Booked";
             this.Booked_btn.UseVisualStyleBackColor = true;
-            this.Booked_btn.Click += new System.EventHandler(this.Booked_btn_Click);
+            this.Booked_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // Coming_btn
             // 
@@ -313,7 +313,7 @@
             this.Coming_btn.Tag = "NoDel";
             this.Coming_btn.Text = "Coming";
             this.Coming_btn.UseVisualStyleBackColor = true;
-            this.Coming_btn.Click += new System.EventHandler(this.Coming_btn_Click);
+            this.Coming_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // Comment_btn
             // 
@@ -373,7 +373,7 @@
             this.Commented_btn.Tag = "NoDel";
             this.Commented_btn.Text = "Commented";
             this.Commented_btn.UseVisualStyleBackColor = true;
-            this.Commented_btn.Click += new System.EventHandler(this.Commented_btn_Click);
+            this.Commented_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // AllComment_btn
             // 
@@ -385,7 +385,7 @@
             this.AllComment_btn.Tag = "NoDel";
             this.AllComment_btn.Text = "All Comments";
             this.AllComment_btn.UseVisualStyleBackColor = true;
-            this.AllComment_btn.Click += new System.EventHandler(this.AllComment_btn_Click);
+            this.AllComment_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // Rating_btn
             // 
@@ -397,7 +397,7 @@
             this.Rating_btn.Tag = "NoDel";
             this.Rating_btn.Text = "Rating";
             this.Rating_btn.UseVisualStyleBackColor = true;
-            this.Rating_btn.Click += new System.EventHandler(this.Rating_btn_Click);
+            this.Rating_btn.Click += new System.EventHandler(this.Finder_click);
             // 
             // ShowTime_ID_tb
             // 

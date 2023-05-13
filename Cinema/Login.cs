@@ -24,13 +24,20 @@ namespace Cinema
         {
             bool result = false;
 
-            if (Admin_cb.Checked)
+            try
             {
-                bs.AdminLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                if (Admin_cb.Checked)
+                {
+                    bs.AdminLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                }
+                else
+                {
+                    bs.CustomerLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                bs.CustomerLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                MessageBox.Show(ex.Message, "Notification");
             }
            
             if (result) 
@@ -59,6 +66,11 @@ namespace Cinema
             {
                 Login_btn_Click(sender, e);
             }
+        }
+
+        private void Password_cb_Click(object sender, EventArgs e)
+        {
+            this.Password_tb.UseSystemPasswordChar = !Password_cb.Checked;
         }
     }
 }

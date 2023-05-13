@@ -14,185 +14,243 @@ namespace Cinema
     public partial class Admin : Form
     {
         BL_Admin bs = new BL_Admin();
-        DataTable DataTables = null;
-        DataSet DataSets = null;
         public User admin;
+        public User cus;
         //FLAGS
         private bool Res = false;
         private bool ShowTime = false;
         private bool Movie = false;
-        private bool Customer = false;
-        private bool Employee = false;
         public Admin()
         {
             InitializeComponent();
-            DataView.DataSource = bs.Movies();
+            DataView.DataSource = bs.LoadData(AdminType.AllMovies);
         }
-        private void RESETFLAGS()
+        private void ResetFlags()
         {
             Res = false;
             ShowTime = false;
             Movie = false;
-            Customer = false;
-            Employee = false;
         }
         //TOOL STRIP
         private void showingTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RESETFLAGS();
+            ResetFlags();
             ShowTime = true;
-            DataView.DataSource = bs.ShowTime();
-            this.toolStripComboBox1.Items.Clear();
-            this.toolStripComboBox1.Items.AddRange(new object[] {
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.AllShowTime);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
+            this.Filter.Items.Clear();
+            this.Filter.Items.AddRange(new object[] {
             "ShowingInDay",
             "ComingShowing",
             "ClosedShowing",
             "ShowingInDayAvailable",
             "ShowingInDayOut",
             "HighRatingShowing" });
-            this.toolStripComboBox1.Text = "6 Filters";
-            this.ADDBUTT.Enabled = true;
-            this.DELETE.Enabled = false;
+            this.Filter.Text = "6 Filters";
+            this.add_btn.Enabled = true;
+            this.delete_btn.Enabled = false;
         }
         private void moviesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RESETFLAGS();
-            Movie = true; 
-            DataView.DataSource = bs.Movies();
-            this.toolStripComboBox1.Items.Clear();
-            this.toolStripComboBox1.Text = "None";
-            this.ADDBUTT.Enabled = true;
-            this.DELETE.Enabled = false;
+            ResetFlags();
+            Movie = true;
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.AllMovies);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
+            this.Filter.Items.Clear();
+            this.Filter.Text = "None";
+            this.add_btn.Enabled = true;
+            this.delete_btn.Enabled = false;
         }
         private void reservationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RESETFLAGS();
+            ResetFlags();
             Res = true;
-            DataView.DataSource = bs.Res();
-            this.toolStripComboBox1.Items.Clear();
-            this.toolStripComboBox1.Text = "None";
-            this.ADDBUTT.Enabled = false;
-            this.DELETE.Enabled = true;
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.Reservation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
+            this.Filter.Items.Clear();
+            this.Filter.Text = "None";
+            this.add_btn.Enabled = false;
+            this.delete_btn.Enabled = true;
         }
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RESETFLAGS();
-            Customer = true;
-            DataView.DataSource = bs.KH();
-            this.toolStripComboBox1.Items.Clear();
-            this.toolStripComboBox1.Items.AddRange(new object[] {
+            ResetFlags();
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.CustomerInformation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }
+            this.Filter.Items.Clear();
+            this.Filter.Items.AddRange(new object[] {
             "VIP",
             "NoVIP"});
-            this.toolStripComboBox1.Text = "2 Filters";
-            this.ADDBUTT.Enabled = false;
-            this.DELETE.Enabled = false;
+            this.Filter.Text = "2 Filters";
+            this.add_btn.Enabled = false;
+            this.delete_btn.Enabled = false;
         }
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RESETFLAGS();
-            Employee = true;
-            DataView.DataSource = bs.Emp();
-            this.toolStripComboBox1.Items.Clear();
+            ResetFlags();
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.AdminInformation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }          
+            this.Filter.Items.Clear();
             this.toolStrip1.Text = "None";
-            this.ADDBUTT.Enabled = false;
-            this.DELETE.Enabled = false;
+            this.add_btn.Enabled = false;
+            this.delete_btn.Enabled = false;
         }
-        private void toolStripComboBox1_TextUpdate(object sender, EventArgs e)
+        private void companyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ResetFlags();
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.Company);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }            
+            this.Filter.Items.Clear();
+            this.toolStrip1.Text = "None";
+            this.add_btn.Enabled = false;
+            this.delete_btn.Enabled = false;
+        }
+        private void roomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResetFlags();
+            try
+            {
+                DataView.DataSource = bs.LoadData(AdminType.Room);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Notification");
+            }           
+            this.Filter.Items.Clear();
+            this.toolStrip1.Text = "None";
+            this.add_btn.Enabled = false;
+            this.delete_btn.Enabled = false;
+        }
 
-        }
-        private void toolStripComboBox1_TextChanged(object sender, EventArgs e)
+        private void Filter_TextChanged(object sender, EventArgs e)
         {
-            if (toolStripComboBox1.Text == "VIP")
-                DataView.DataSource = bs.ISVIP();
-            else if (toolStripComboBox1.Text == "NoVIP")
-                DataView.DataSource = bs.NoVIP();
-            else if (toolStripComboBox1.Text == "ShowingInDay")
-                DataView.DataSource = bs.ShowingInDay();
-            else if (toolStripComboBox1.Text == "ComingShowing")
-                DataView.DataSource = bs.ComingShow();
-            else if (toolStripComboBox1.Text == "ClosedShowing")
-                DataView.DataSource = bs.ClosedShow();
-            else if (toolStripComboBox1.Text == "ShowingInDayAvailable")
-                DataView.DataSource = bs.ShowInDayAva();
-            else if (toolStripComboBox1.Text == "ShowingInDayOut")
-                DataView.DataSource = bs.ShowInDayOut();
-            else if (toolStripComboBox1.Text == "HighRatingShowing")
-                DataView.DataSource = bs.highRatingShow();
+            if (Filter.Text == "VIP")
+                DataView.DataSource = bs.LoadData(AdminType.isVIP);
+            else if (Filter.Text == "NoVIP")
+                DataView.DataSource = bs.LoadData(AdminType.isNotVIP);
+            else if (Filter.Text == "ShowingInDay")
+                DataView.DataSource = bs.LoadData(AdminType.ShowingInDay);
+            else if (Filter.Text == "ComingShowing")
+                DataView.DataSource = bs.LoadData(AdminType.ComingShowing);
+            else if (Filter.Text == "ClosedShowing")
+                DataView.DataSource = bs.LoadData(AdminType.ClosedShowing);
+            else if (Filter.Text == "ShowingInDayAvailable")
+                DataView.DataSource = bs.LoadData(AdminType.ShowingInDayAvailable);
+            else if (Filter.Text == "ShowingInDayOut")
+                DataView.DataSource = bs.LoadData(AdminType.ShowingInDayOut);
+            else if (Filter.Text == "HighRatingShowing")
+                DataView.DataSource = bs.LoadData(AdminType.HighRatingShowing);
         }
-        private void ADDBUTT_Click(object sender, EventArgs e)
+
+        private void add_btn_Click(object sender, EventArgs e)
         {
             int a = this.DataView.Rows.Count - 2;
             if (Res)
             {
-                if (bs.AddRES(this.DataView.Rows[a].Cells[1].Value.ToString(), this.DataView.Rows[a].Cells[2].Value.ToString(), Int32.Parse(this.DataView.Rows[a].Cells[3].Value.ToString())))
+                try
                 {
+                    bs.AddReservation(this.DataView.Rows[a].Cells[1].Value.ToString(), this.DataView.Rows[a].Cells[2].Value.ToString(), Int32.Parse(this.DataView.Rows[a].Cells[3].Value.ToString()));
                     reservationsToolStripMenuItem_Click(sender, e);
                     MessageBox.Show("SUCCESS!!");
                 }
-                else
-                    MessageBox.Show("FAIL");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
 
             }
             else if (ShowTime)
             {
-                if (bs.AddShowTime(this.DataView.Rows[a].Cells[0].Value.ToString(), this.DataView.Rows[a].Cells[1].Value.ToString(), this.DataView.Rows[a].Cells[2].Value.ToString(), this.DataView.Rows[a].Cells[3].Value.ToString(), this.DataView.Rows[a].Cells[8].Value.ToString()))
+                try
                 {
+                    bs.AddShowTime(this.DataView.Rows[a].Cells[0].Value.ToString(), this.DataView.Rows[a].Cells[1].Value.ToString(), this.DataView.Rows[a].Cells[2].Value.ToString(), this.DataView.Rows[a].Cells[3].Value.ToString(), this.DataView.Rows[a].Cells[8].Value.ToString());
                     showingTimeToolStripMenuItem_Click(sender, e);
                     MessageBox.Show("SUCCESS!!");
                 }
-                else
-                    MessageBox.Show("FAIL");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
             }
             else if (Movie)
             {
-                if (bs.AddMov(this.DataView.Rows[a].Cells[0].Value.ToString(), this.DataView.Rows[a].Cells[1].Value.ToString(), Int32.Parse(this.DataView.Rows[a].Cells[2].Value.ToString()), this.DataView.Rows[a].Cells[3].Value.ToString(), this.DataView.Rows[a].Cells[4].Value.ToString(), this.DataView.Rows[a].Cells[5].Value.ToString(), this.DataView.Rows[a].Cells[6].Value.ToString()))
+                try
                 {
+                    bs.AddMovie(this.DataView.Rows[a].Cells[0].Value.ToString(), this.DataView.Rows[a].Cells[1].Value.ToString(), Int32.Parse(this.DataView.Rows[a].Cells[2].Value.ToString()), this.DataView.Rows[a].Cells[3].Value.ToString(), this.DataView.Rows[a].Cells[4].Value.ToString(), this.DataView.Rows[a].Cells[5].Value.ToString(), this.DataView.Rows[a].Cells[6].Value.ToString());
                     moviesToolStripMenuItem_Click(sender, e);
                     MessageBox.Show("SUCCESS!!");
                 }
-                else
-                    MessageBox.Show("FAIL");
-            }
-            else if (Customer)
-            {
-
-            }
-            else if (Employee)
-            {
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
             }
         }
-
-        private void DELETE_Click(object sender, EventArgs e)
+        private void delete_btn_Click(object sender, EventArgs e)
         {
             if (Res)
             {
-                if (bs.DelRES(Int32.Parse(this.DataView.Rows[this.DataView.CurrentRow.Index].Cells[0].Value.ToString())))
+                try
                 {
+                    bs.DeleteReservation(Int32.Parse(this.DataView.Rows[this.DataView.CurrentRow.Index].Cells[0].Value.ToString()));
                     reservationsToolStripMenuItem_Click(sender, e);
                     MessageBox.Show("SUCCESS!!");
                 }
-                else
-                    MessageBox.Show("FAIL");
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
             }
-            else if (ShowTime)
+        }
+
+        private void Recharge_btn_Click(object sender, EventArgs e)
+        {
+            try
             {
-
+                bs.Recharge(User_ID_tb.Text, Convert.ToInt32(Recharge_Num.Value));
+                MessageBox.Show("OK", "Notification");
             }
-            else if (Movie)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Notification");
             }
-            else if (Customer)
-            {
-
-            }
-            else if (Employee)
-            {
-
-            }
+            customersToolStripMenuItem_Click(sender, e);
         }
     }
 }

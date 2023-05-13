@@ -26,31 +26,31 @@ namespace Cinema.BS_Layer
             {
                 case MovieType.ByScreen:
                     sql = $"select * from Fn_ShowTimeByScreen('{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.ByCompany:
                     sql = $"select * from Fn_ShowTimeByCompany(N'{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.ByActor:
                     sql = $"select * from Fn_ShowTimeByActor(N'{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.UserBooked:
                     sql = $"select * from Fn_UserBooked('{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.UserCommented:
                     sql = $"select * from Fn_UserCommented('{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.MovieRating:
                     sql = $"select * from Fn_MovieRating('{ID}')";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.InDay:
                     sql = "select * from View_ShowingInDay";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.Coming:
                     sql = "select * from View_ComingShowing";
-                    return db.LoadMovies(sql);
+                    return db.LoadData(sql);
                 case MovieType.AllComments:
                     sql = "select * from View_Comments";
-                    return db.LoadMovies(sql);              
+                    return db.LoadData(sql);              
                 default:
                     return null;
             }
