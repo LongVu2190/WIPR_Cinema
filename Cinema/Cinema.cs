@@ -188,19 +188,26 @@ namespace Cinema
             DialogResult dlr = MessageBox.Show($"Your total is {total_cost}", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
-                try
+                if (cus.Balance < total_cost && User_Booked.Count > 1)
                 {
-                    foreach (var seat in User_Booked)
-                    {
-                        bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
-                    }
-                    bs.UserInformation(cus.User_ID, ref cus);
-                    LoadUserInformation();
-                    MessageBox.Show("Booked Successfully", "Notification");
+                    MessageBox.Show("Your balance is not enough!!!", "Notification");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "Notification");
+                    try
+                    {
+                        foreach (var seat in User_Booked)
+                        {
+                            bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
+                        }
+                        bs.UserInformation(cus.User_ID, ref cus);
+                        LoadUserInformation();
+                        MessageBox.Show("Booked Successfully", "Notification");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Notification");
+                    }
                 }
             }
             User_Booked = new List<int>();
