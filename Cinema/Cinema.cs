@@ -188,14 +188,8 @@ namespace Cinema
             DialogResult dlr = MessageBox.Show($"Your total is {total_cost}", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
-                if (total_cost > cus.Balance && User_Booked.Count > 1)
-                {
-                    MessageBox.Show("You don't have enough money", "Notification");
-                    return;
-                }
                 try
                 {
-                    bs.SumTotalCost(ShowTime_ID, ref total_cost, cus.User_ID, User_Booked.Count());
                     foreach (var seat in User_Booked)
                     {
                         bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
@@ -236,12 +230,16 @@ namespace Cinema
                 case "Coming_btn":
                     flag = MovieType.Coming;
                     break;
-                case "Commented_btn":
+                case "Booked_btn":
                     flag = MovieType.UserBooked;
                     type = cus.User_ID;
                     break;
+                case "Commented_btn":
+                    flag = MovieType.AllComments;
+                    type = cus.User_ID;
+                    break;
                 case "UserCommented":
-                    flag = MovieType.UserBooked;
+                    flag = MovieType.UserCommented;
                     type = cus.User_ID;
                     break;
                 case "AllComment_btn":
