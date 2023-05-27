@@ -421,7 +421,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 451);
+            this.ClientSize = new System.Drawing.Size(1285, 460);
             this.Controls.Add(this.Reservation_ID_tb);
             this.Controls.Add(this.ShowTime_ID_tb);
             this.Controls.Add(this.Rating_btn);

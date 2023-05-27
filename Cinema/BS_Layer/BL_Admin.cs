@@ -10,10 +10,7 @@ namespace Cinema.BS_Layer
 {
     internal class BL_Admin
     {
-        public BL_Admin()
-        {
-
-        }
+        public BL_Admin() { }
         DBMain db = new DBMain();
         public void AddReservation(string User, string ShowID, int Seat)
         {

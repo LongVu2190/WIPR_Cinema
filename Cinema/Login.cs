@@ -22,17 +22,15 @@ namespace Cinema
 
         private void Login_btn_Click(object sender, EventArgs e)
         {
-            bool result = false;
-
             try
             {
                 if (Admin_cb.Checked)
                 {
-                    bs.AdminLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                    user = bs.AdminLogin(UserID_tb.Text, Password_tb.Text);
                 }
                 else
                 {
-                    bs.CustomerLogin(UserID_tb.Text, Password_tb.Text, ref user, ref result);
+                    user = bs.CustomerLogin(UserID_tb.Text, Password_tb.Text);
                 }
             }
             catch (Exception ex)
@@ -40,7 +38,7 @@ namespace Cinema
                 MessageBox.Show(ex.Message, "Notification");
             }
            
-            if (result) 
+            if (user.User_ID == UserID_tb.Text) 
             {
                 MessageBox.Show("Login Successfully");
                 this.Hide();

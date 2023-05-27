@@ -16,7 +16,6 @@ namespace Cinema
         BL_Admin bs = new BL_Admin();
         public User admin;
         public User cus;
-        //FLAGS
         private bool Res = false;
         private bool ShowTime = false;
         private bool Movie = false;
@@ -31,7 +30,6 @@ namespace Cinema
             ShowTime = false;
             Movie = false;
         }
-        //TOOL STRIP
         private void showingTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetFlags();

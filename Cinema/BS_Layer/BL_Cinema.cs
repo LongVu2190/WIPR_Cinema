@@ -12,12 +12,22 @@ namespace Cinema.BS_Layer
     internal class BL_Cinema
     {
         DBMain db = new DBMain();
+        DataTable myTable = new DataTable();
+        string data;
         public BL_Cinema() { }
 
         public List<int> LoadSeats(string ShowTime_ID)
         {
             string sql = $"select * from Fn_BookedSeats('{ShowTime_ID}')";
-            return db.LoadSeats(sql);
+            myTable = db.LoadData(sql);
+            List<int> list = new List<int>();
+
+            foreach (DataRow row in myTable.Rows)
+            {
+                data = row["Seat"].ToString();
+                list.Add(int.Parse(data));
+            }
+            return list;
         }
         public DataTable LoadMovies(MovieType flag, string ID)
         {
@@ -55,15 +65,33 @@ namespace Cinema.BS_Layer
                     return null;
             }
         }
-        public void UserInformation(string User_ID, ref User cus)
+        
+        public User UserInformation(string User_ID)
         {
             string sql = $"select * from Fn_UserInformation('{User_ID}')";
-            db.UserInformation(sql, ref cus);
+            myTable = db.LoadData(sql);
+            User cus = new User();
+
+            cus.User_ID = User_ID;
+            cus.Name = myTable.Rows[0]["UserName"].ToString();
+            data = myTable.Rows[0]["Balance"].ToString();
+            cus.Balance = int.Parse(data);
+            data = myTable.Rows[0]["Point"].ToString();
+            cus.Point = int.Parse(data);
+            data = myTable.Rows[0]["isVip"].ToString();
+            cus.isVip = Boolean.Parse(data);
+            data = myTable.Rows[0]["Expense"].ToString();
+            cus.Expense = int.Parse(data);
+
+            return cus;
         }
-        public void SumTotalCost(string ShowTime_ID, ref int cost, string User_ID, int Count)
+        public int SumTotalCost(string ShowTime_ID, string User_ID, int Count)
         {
             string sql = $"select * from Fn_SumTotalCost('{ShowTime_ID}', '{User_ID}', '{Count}')";
-            db.SumTotalCost(sql, ref cost);
+            myTable = db.LoadData(sql);
+
+            data = myTable.Rows[0]["Total"].ToString();
+            return int.Parse(data);
         }
         public void AddReservation(string User_ID, string ShowTime_ID, int Seat)
         {

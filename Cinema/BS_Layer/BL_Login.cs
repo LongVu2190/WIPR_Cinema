@@ -12,17 +12,43 @@ namespace Cinema.BS_Layer
     internal class BL_Login
     {
         DBMain db = new DBMain();
-
+        DataTable myTable = new DataTable();
+        string data;
         public BL_Login() { }
-        public void AdminLogin(string User_ID, string Password, ref User admin, ref bool result)
+        public User AdminLogin(string User_ID, string Password)
         {
             string sql = $"select * from Fn_AdminLogin('{User_ID}', '{Password}')";
-            db.AdminLogin(sql, ref admin, ref result);
+            User admin = new User();
+            myTable = db.LoadData(sql);
+
+            foreach (DataRow row in myTable.Rows)
+            {
+                admin.User_ID = row["User_ID"].ToString();
+                admin.Name = row["User_Name"].ToString();
+                admin.Role = row["Admin_Role"].ToString();
+            }
+            return admin;
         }
-        public void CustomerLogin(string User_ID, string Password, ref User cus, ref bool result)
+        public User CustomerLogin(string User_ID, string Password)
         {
             string sql = $"select * from Fn_CustomerLogin('{User_ID}', '{Password}')";
-            db.CustomerLogin(sql, ref cus, ref result);
+
+            User customer = new User();
+            myTable = db.LoadData(sql);
+
+            foreach (DataRow row in myTable.Rows)
+            {
+                customer.User_ID = row["User_ID"].ToString();
+                customer.Name = row["User_Name"].ToString();
+                data = row["Balance"].ToString();
+                customer.Balance = int.Parse(data);
+                data = row["Point"].ToString();
+                customer.Point = int.Parse(data);
+                data = row["isVip"].ToString();
+                customer.isVip = Boolean.Parse(data);
+            }
+            
+            return customer;
         }
         public void Register(string User_ID, string Password, string Name, string Email, string Address, string Phone)
         {

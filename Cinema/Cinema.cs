@@ -35,11 +35,13 @@ namespace Cinema
             try
             {
                 Movies_Data.DataSource = bs.LoadMovies(flag, "");
+                cus = bs.UserInformation(cus.User_ID);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Notification");
             }
+            
             LoadUserInformation();
         }
         private void CreateSeatsWidget()
@@ -178,7 +180,7 @@ namespace Cinema
             }
             try
             {
-                bs.SumTotalCost(ShowTime_ID, ref total_cost, cus.User_ID, User_Booked.Count());
+                total_cost = bs.SumTotalCost(ShowTime_ID, cus.User_ID, User_Booked.Count());
             }
             catch (Exception ex)
             {
@@ -188,7 +190,7 @@ namespace Cinema
             DialogResult dlr = MessageBox.Show($"Your total is {total_cost}", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
-                if (cus.Balance < total_cost && User_Booked.Count > 1)
+                if (cus.Balance < total_cost)
                 {
                     MessageBox.Show("Your balance is not enough!!!", "Notification");
                 }
@@ -200,7 +202,7 @@ namespace Cinema
                         {
                             bs.AddReservation(cus.User_ID, ShowTime_ID, seat);
                         }
-                        bs.UserInformation(cus.User_ID, ref cus);
+                        cus = bs.UserInformation(cus.User_ID);
                         LoadUserInformation();
                         MessageBox.Show("Booked Successfully", "Notification");
                     }
@@ -250,7 +252,9 @@ namespace Cinema
                     type = cus.User_ID;
                     break;
                 case "AllComment_btn":
-                    flag = MovieType.AllComments;
+                    {
+                        ReportForm form = new ReportForm();
+                    }
                     break;
                 case "Rating_btn":
                     if (ShowTime_ID == "")

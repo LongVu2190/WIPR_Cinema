@@ -23,65 +23,27 @@ namespace Cinema.DB_Layer
         }
         public DataTable LoadData(string sql)
         {
+            if (con.State == ConnectionState.Open)
+                con.Close();
+            con.Open();
+
             sql_data = new SqlDataAdapter(sql, con);
             data = new DataTable();
             sql_data.Fill(data);
 
             return data;
         }
-        public List<int> LoadSeats(string sql)
+        public void MyExecuteNonQuery(string sql)
         {
-            List<int> list = new List<int>();
+            if (con.State == ConnectionState.Open)
+                con.Close();
+            con.Open();
 
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        list.Add(reader.GetInt32(0));
-                    }
-                }
-            }
-            return list;
-        }     
-        public void SumTotalCost(string sql, ref int cost)
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        cost = reader.GetInt32(0);
-                    }
-                }
-            }
-        }
-        public void UserInformation(string sql, ref User cus)
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        cus.Balance = reader.GetInt32(0);
-                        cus.Point = reader.GetInt32(1);
-                        cus.isVip = reader.GetBoolean(2);
-                        cus.Expense = reader.GetInt32(3);
-                    }
-                }
-            }
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
         }
         public void CustomerLogin(string sql, ref User cus, ref bool result)
         {
@@ -104,35 +66,6 @@ namespace Cinema.DB_Layer
                 }
             }
         }
-        public void AdminLogin(string sql, ref User admin, ref bool result)
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        admin.User_ID = reader.GetString(0);
-                        admin.Name = reader.GetString(1);
-                        admin.Role = reader.GetString(2);
-                        result = true;
-                    }
-                }
-            }
-        }
-        public void MyExecuteNonQuery(string sql)
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = sql;
-            cmd.ExecuteNonQuery();
-        }
+
     }
 }
