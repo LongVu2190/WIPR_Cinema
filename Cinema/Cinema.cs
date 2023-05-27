@@ -252,9 +252,7 @@ namespace Cinema
                     type = cus.User_ID;
                     break;
                 case "AllComment_btn":
-                    {
-                        ReportForm form = new ReportForm();
-                    }
+
                     break;
                 case "Rating_btn":
                     if (ShowTime_ID == "")
