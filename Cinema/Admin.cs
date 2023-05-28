@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cinema.BS_Layer;
+using Cinema.ReportForms;
 
 namespace Cinema
 {
@@ -19,16 +21,19 @@ namespace Cinema
         private bool Res = false;
         private bool ShowTime = false;
         private bool Movie = false;
+        private bool Company = false;
+        private bool Room = false;
         public Admin()
         {
             InitializeComponent();
-            DataView.DataSource = bs.LoadData(AdminType.AllMovies);
         }
         private void ResetFlags()
         {
             Res = false;
             ShowTime = false;
             Movie = false;
+            Company = false;
+            Room = false;
         }
         private void showingTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -91,41 +96,19 @@ namespace Cinema
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetFlags();
-            try
-            {
-                DataView.DataSource = bs.LoadData(AdminType.CustomerInformation);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Notification");
-            }
-            this.Filter.Items.Clear();
-            this.Filter.Items.AddRange(new object[] {
-            "VIP",
-            "NoVIP"});
-            this.Filter.Text = "2 Filters";
-            this.add_btn.Enabled = false;
-            this.delete_btn.Enabled = false;
+            AllCustomers form = new AllCustomers();
+            form.ShowDialog();
         }
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetFlags();
-            try
-            {
-                DataView.DataSource = bs.LoadData(AdminType.AdminInformation);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Notification");
-            }          
-            this.Filter.Items.Clear();
-            this.toolStrip1.Text = "None";
-            this.add_btn.Enabled = false;
-            this.delete_btn.Enabled = false;
+            AllEmployees form = new AllEmployees();
+            form.ShowDialog();
         }
         private void companyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetFlags();
+            Company = true;
             try
             {
                 DataView.DataSource = bs.LoadData(AdminType.Company);
@@ -133,15 +116,16 @@ namespace Cinema
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Notification");
-            }            
+            }
             this.Filter.Items.Clear();
             this.toolStrip1.Text = "None";
-            this.add_btn.Enabled = false;
+            this.add_btn.Enabled = true;
             this.delete_btn.Enabled = false;
         }
         private void roomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ResetFlags();
+            Room = true;
             try
             {
                 DataView.DataSource = bs.LoadData(AdminType.Room);
@@ -149,20 +133,16 @@ namespace Cinema
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Notification");
-            }           
+            }
             this.Filter.Items.Clear();
             this.toolStrip1.Text = "None";
-            this.add_btn.Enabled = false;
+            this.add_btn.Enabled = true;
             this.delete_btn.Enabled = false;
         }
 
         private void Filter_TextChanged(object sender, EventArgs e)
         {
-            if (Filter.Text == "VIP")
-                DataView.DataSource = bs.LoadData(AdminType.isVIP);
-            else if (Filter.Text == "NoVIP")
-                DataView.DataSource = bs.LoadData(AdminType.isNotVIP);
-            else if (Filter.Text == "ShowingInDay")
+            if (Filter.Text == "ShowingInDay")
                 DataView.DataSource = bs.LoadData(AdminType.ShowingInDay);
             else if (Filter.Text == "ComingShowing")
                 DataView.DataSource = bs.LoadData(AdminType.ComingShowing);
@@ -219,6 +199,33 @@ namespace Cinema
                     MessageBox.Show(ex.Message, "Notification");
                 }
             }
+            else if (Company)
+            {
+                try
+                {
+                    bs.AddCompany(this.DataView.Rows[a].Cells["Company_ID"].Value.ToString(), this.DataView.Rows[a].Cells["Name"].Value.ToString(), this.DataView.Rows[a].Cells["Email"].Value.ToString(), this.DataView.Rows[a].Cells["Phone"].Value.ToString(), this.DataView.Rows[a].Cells["Address"].Value.ToString());
+                    companyToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
+            else if (Room)
+            {
+                int seats = Int32.Parse(this.DataView.Rows[a].Cells["MaxSeats"].Value.ToString());
+                try
+                {
+                    bs.AddRoom(this.DataView.Rows[a].Cells["Room_ID"].Value.ToString(), seats, this.DataView.Rows[a].Cells["Screen_Resolution"].Value.ToString(), this.DataView.Rows[a].Cells["Audio_Quality"].Value.ToString());
+                    roomToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
         }
         private void delete_btn_Click(object sender, EventArgs e)
         {
@@ -248,7 +255,6 @@ namespace Cinema
             {
                 MessageBox.Show(ex.Message, "Notification");
             }
-            customersToolStripMenuItem_Click(sender, e);
         }
     }
 }

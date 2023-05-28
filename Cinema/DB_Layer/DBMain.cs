@@ -45,27 +45,5 @@ namespace Cinema.DB_Layer
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
         }
-        public void CustomerLogin(string sql, ref User cus, ref bool result)
-        {
-            if (con.State == ConnectionState.Open)
-                con.Close();
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        cus.User_ID = reader.GetString(0);
-                        cus.Name = reader.GetString(1);
-                        cus.Balance = reader.GetInt32(2);
-                        cus.Point = reader.GetInt32(3);
-                        cus.isVip = reader.GetBoolean(4);
-                        result = true;
-                    }
-                }
-            }
-        }
-
     }
 }

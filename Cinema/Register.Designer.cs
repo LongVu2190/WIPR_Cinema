@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.Register_btn = new System.Windows.Forms.Button();
             this.UserID_tb = new System.Windows.Forms.TextBox();
             this.Password_tb = new System.Windows.Forms.TextBox();
@@ -45,14 +46,16 @@
             // 
             // Register_btn
             // 
+            this.Register_btn.BackColor = System.Drawing.Color.RoyalBlue;
             this.Register_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Register_btn.Location = new System.Drawing.Point(291, 312);
+            this.Register_btn.ForeColor = System.Drawing.Color.White;
+            this.Register_btn.Location = new System.Drawing.Point(291, 320);
             this.Register_btn.Name = "Register_btn";
             this.Register_btn.Size = new System.Drawing.Size(84, 29);
             this.Register_btn.TabIndex = 24;
             this.Register_btn.Tag = "NoDel";
             this.Register_btn.Text = "Register";
-            this.Register_btn.UseVisualStyleBackColor = true;
+            this.Register_btn.UseVisualStyleBackColor = false;
             this.Register_btn.Click += new System.EventHandler(this.Register_btn_Click);
             // 
             // UserID_tb
@@ -167,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 357);
+            this.ClientSize = new System.Drawing.Size(416, 371);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -181,6 +184,7 @@
             this.Controls.Add(this.Password_tb);
             this.Controls.Add(this.UserID_tb);
             this.Controls.Add(this.Register_btn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";

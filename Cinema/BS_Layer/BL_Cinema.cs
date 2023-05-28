@@ -34,15 +34,6 @@ namespace Cinema.BS_Layer
             string sql = "";
             switch (flag)
             {
-                case MovieType.ByScreen:
-                    sql = $"select * from Fn_ShowTimeByScreen('{ID}')";
-                    return db.LoadData(sql);
-                case MovieType.ByCompany:
-                    sql = $"select * from Fn_ShowTimeByCompany(N'{ID}')";
-                    return db.LoadData(sql);
-                case MovieType.ByActor:
-                    sql = $"select * from Fn_ShowTimeByActor(N'{ID}')";
-                    return db.LoadData(sql);
                 case MovieType.UserBooked:
                     sql = $"select * from Fn_UserBooked('{ID}')";
                     return db.LoadData(sql);
@@ -81,6 +72,7 @@ namespace Cinema.BS_Layer
             data = myTable.Rows[0]["isVip"].ToString();
             cus.isVip = Boolean.Parse(data);
             data = myTable.Rows[0]["Expense"].ToString();
+            if (data == "") data = "0";
             cus.Expense = int.Parse(data);
 
             return cus;

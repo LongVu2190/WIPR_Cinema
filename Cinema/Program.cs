@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema.ReportForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace Cinema
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
-            //Application.Run(new Cinema());
         }
     }
 }

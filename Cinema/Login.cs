@@ -32,6 +32,8 @@ namespace Cinema
                 {
                     user = bs.CustomerLogin(UserID_tb.Text, Password_tb.Text);
                 }
+            
+            
             }
             catch (Exception ex)
             {
@@ -45,7 +47,7 @@ namespace Cinema
                 if (Admin_cb.Checked)
                     new Admin { admin = this.user }.ShowDialog();
                 else
-                    new Cinema { cus = this.user }.ShowDialog();
+                    new Booking { cus = this.user }.ShowDialog();
                 base.Close();
             }
             else

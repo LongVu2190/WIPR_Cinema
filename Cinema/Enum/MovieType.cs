@@ -2,9 +2,6 @@
 {
     enum MovieType
     {
-        ByScreen,
-        ByCompany,
-        ByActor,
         UserBooked,
         UserCommented,
         Coming,

@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Cinema.BS_Layer
 {
@@ -36,18 +38,22 @@ namespace Cinema.BS_Layer
         {
             string sql = $"EXEC Sp_AddNewMovie '{ID}', N'{Name}', '{Cost}', '{Time}', N'{Actor}', N'{Direc}', '{ComID}'";
             db.MyExecuteNonQuery(sql);
-        }       
+        }
+        public void AddCompany(string Company_ID, string Name, string Email, string Phone, string Address)
+        {
+            string sql = $"EXEC Sp_AddNewCompany '{Company_ID}', N'{Name}', '{Email}', '{Phone}', '{Address}'";
+            db.MyExecuteNonQuery(sql);
+        }
+        public void AddRoom(string Room_ID, int MaxSeats, string Screen_Resolution, string Audio_Quality)
+        {
+            string sql = $"EXEC Sp_AddNewRoom '{Room_ID}', {MaxSeats}, '{Screen_Resolution}', '{Audio_Quality}'";
+            db.MyExecuteNonQuery(sql);
+        }
         public DataTable LoadData(AdminType type)
         {
             string sql = "";
             switch (type) 
             {
-                case AdminType.isVIP:
-                    sql = "select * from View_isVIP";
-                    break;
-                case AdminType.isNotVIP:
-                    sql = "select * from View_isNotVIP";
-                    break;
                 case AdminType.ShowingInDay:
                     sql = "select * from View_ShowingInDay";
                     break;
@@ -74,12 +80,6 @@ namespace Cinema.BS_Layer
                     break;
                 case AdminType.AllMovies:
                     sql = "select * from Movie";
-                    break;
-                case AdminType.AdminInformation:
-                    sql = "select * from User_Information A inner join Admin B on A.User_ID = B.User_ID";
-                    break;
-                case AdminType.CustomerInformation:
-                    sql = "select * from User_Information A inner join Customer B on A.User_ID = B.User_ID";
                     break;
                 case AdminType.Company:
                     sql = "select * from Company";
