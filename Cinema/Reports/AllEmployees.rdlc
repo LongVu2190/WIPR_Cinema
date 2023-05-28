@@ -6,22 +6,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74306in</Width>
+              <Width>1.85417in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -295,7 +295,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>User_ID</rd:DefaultName>
@@ -328,7 +330,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Name</rd:DefaultName>
@@ -361,7 +365,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Email</rd:DefaultName>
@@ -394,7 +400,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Address</rd:DefaultName>
@@ -427,7 +435,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Phone</rd:DefaultName>
@@ -460,7 +470,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Role</rd:DefaultName>
@@ -503,7 +515,7 @@
         </TablixRowHierarchy>
         <DataSetName>AllEmployees</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.45833in</Width>
+        <Width>11.125in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -514,7 +526,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.45833in</Width>
+  <Width>11.125in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>
@@ -538,10 +550,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>0.23833in</Top>
-          <Left>4.61333in</Left>
-          <Height>0.35417in</Height>
-          <Width>1.61458in</Width>
+          <Top>0.4675in</Top>
+          <Left>4.36333in</Left>
+          <Height>0.32292in</Height>
+          <Width>1.46875in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -572,7 +584,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>baecee77-8427-45bf-92aa-69db131b2b85</rd:DataSourceID>
+      <rd:DataSourceID>ce317412-ce4e-45db-a35f-400dd179b36c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -610,13 +622,13 @@
       <rd:DataSetInfo>
         <rd:DataSetName>CinemaDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\LongVu\Desktop\WIPR_Cinema\Cinema\CinemaDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>AllEmployees</rd:TableName>
+        <rd:TableName>View_AllEmployees</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>AllEmployeesTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>View_AllEmployeesTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>f5630406-c4c3-45ca-b7a1-8741d6c304e2</rd:ReportID>
+  <rd:ReportID>51091263-e051-4b4d-834d-0f70eb439c0a</rd:ReportID>
 </Report>

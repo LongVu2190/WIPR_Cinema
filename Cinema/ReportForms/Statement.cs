@@ -26,6 +26,7 @@ namespace Cinema.ReportForms
         private void Statement_Load(object sender, EventArgs e)
         {
             this.statementTableAdapter.Fill(this.cinemaDataSet.Statement, ID);
+
             this.reportViewer1.RefreshReport();
         }
     }

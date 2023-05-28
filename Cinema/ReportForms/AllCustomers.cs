@@ -19,8 +19,8 @@ namespace Cinema.ReportForms
 
         private void AllCustomers_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cinemaDataSet.AllCustomers' table. You can move, or remove it, as needed.
-            this.allCustomersTableAdapter.Fill(this.cinemaDataSet.AllCustomers);
+            // TODO: This line of code loads data into the 'cinemaDataSet.View_AllCustomers' table. You can move, or remove it, as needed.
+            this.view_AllCustomersTableAdapter.Fill(this.cinemaDataSet.View_AllCustomers);
 
             this.reportViewer1.RefreshReport();
         }

@@ -525,51 +525,6 @@ SELECT User_ID, Name, Email, Address, Phone FROM User_Information WHERE (User_ID
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AllCustomersTableAdapter" GeneratorDataComponentClassName="AllCustomersTableAdapter" Name="AllCustomers" UserDataComponentName="AllCustomersTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="CinemaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select A.User_ID, Name, Email, Address, Phone, Point, isVip
-from Customer A inner join User_Information B on A.User_ID = B.User_ID</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="User_ID" DataSetColumn="User_ID" />
-              <Mapping SourceColumn="Name" DataSetColumn="Name" />
-              <Mapping SourceColumn="Email" DataSetColumn="Email" />
-              <Mapping SourceColumn="Address" DataSetColumn="Address" />
-              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
-              <Mapping SourceColumn="Point" DataSetColumn="Point" />
-              <Mapping SourceColumn="isVip" DataSetColumn="isVip" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AllEmployeesTableAdapter" GeneratorDataComponentClassName="AllEmployeesTableAdapter" Name="AllEmployees" UserDataComponentName="AllEmployeesTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="CinemaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select A.User_ID, A.Name, A.Email, A.Address, A.Phone, B.Role
-from User_Information A inner join Admin B on A.User_ID = B.User_ID</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="User_ID" DataSetColumn="User_ID" />
-              <Mapping SourceColumn="Name" DataSetColumn="Name" />
-              <Mapping SourceColumn="Email" DataSetColumn="Email" />
-              <Mapping SourceColumn="Address" DataSetColumn="Address" />
-              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
-              <Mapping SourceColumn="Role" DataSetColumn="Role" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StatementTableAdapter" GeneratorDataComponentClassName="StatementTableAdapter" Name="Statement" UserDataComponentName="StatementTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="CinemaConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -591,6 +546,49 @@ where A.User_ID = @UserID</CommandText>
               <Mapping SourceColumn="Movie_Title" DataSetColumn="Movie_Title" />
               <Mapping SourceColumn="Seat" DataSetColumn="Seat" />
               <Mapping SourceColumn="Paid" DataSetColumn="Paid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_AllEmployeesTableAdapter" GeneratorDataComponentClassName="View_AllEmployeesTableAdapter" Name="View_AllEmployees" UserDataComponentName="View_AllEmployeesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CinemaConnectionString (Settings)" DbObjectName="Cinema.dbo.View_AllEmployees" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT User_ID, Name, Email, Address, Phone, Role FROM dbo.View_AllEmployees</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="User_ID" DataSetColumn="User_ID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+              <Mapping SourceColumn="Role" DataSetColumn="Role" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_AllCustomersTableAdapter" GeneratorDataComponentClassName="View_AllCustomersTableAdapter" Name="View_AllCustomers" UserDataComponentName="View_AllCustomersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CinemaConnectionString (Settings)" DbObjectName="Cinema.dbo.View_AllCustomers" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT User_ID, Name, Email, Address, Phone, Point, isVip FROM dbo.View_AllCustomers</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="User_ID" DataSetColumn="User_ID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+              <Mapping SourceColumn="Point" DataSetColumn="Point" />
+              <Mapping SourceColumn="isVip" DataSetColumn="isVip" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -904,88 +902,68 @@ where A.User_ID = @UserID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AllCustomers" msprop:Generator_RowEvHandlerName="AllCustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="AllCustomersRowDeleted" msprop:Generator_RowDeletingName="AllCustomersRowDeleting" msprop:Generator_RowEvArgName="AllCustomersRowChangeEvent" msprop:Generator_TablePropName="AllCustomers" msprop:Generator_RowChangedName="AllCustomersRowChanged" msprop:Generator_UserTableName="AllCustomers" msprop:Generator_RowChangingName="AllCustomersRowChanging" msprop:Generator_RowClassName="AllCustomersRow" msprop:Generator_TableClassName="AllCustomersDataTable" msprop:Generator_TableVarName="tableAllCustomers">
+        <xs:element name="Statement" msprop:Generator_RowClassName="StatementRow" msprop:Generator_RowEvHandlerName="StatementRowChangeEventHandler" msprop:Generator_RowDeletedName="StatementRowDeleted" msprop:Generator_RowDeletingName="StatementRowDeleting" msprop:Generator_RowEvArgName="StatementRowChangeEvent" msprop:Generator_TablePropName="Statement" msprop:Generator_RowChangedName="StatementRowChanged" msprop:Generator_UserTableName="Statement" msprop:Generator_RowChangingName="StatementRowChanging" msprop:Generator_TableClassName="StatementDataTable" msprop:Generator_TableVarName="tableStatement">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="User_ID" msprop:Generator_ColumnPropNameInTable="User_IDColumn" msprop:Generator_ColumnPropNameInRow="User_ID" msprop:Generator_UserColumnName="User_ID" msprop:Generator_ColumnVarNameInTable="columnUser_ID">
+              <xs:element name="Reservation_ID" msprop:Generator_UserColumnName="Reservation_ID" msprop:Generator_ColumnPropNameInTable="Reservation_IDColumn" msprop:Generator_ColumnPropNameInRow="Reservation_ID" msprop:Generator_ColumnVarNameInTable="columnReservation_ID" type="xs:int" />
+              <xs:element name="ShowTime_ID" msprop:Generator_UserColumnName="ShowTime_ID" msprop:Generator_ColumnPropNameInTable="ShowTime_IDColumn" msprop:Generator_ColumnPropNameInRow="ShowTime_ID" msprop:Generator_ColumnVarNameInTable="columnShowTime_ID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName">
+              <xs:element name="Movie_Title" msprop:Generator_UserColumnName="Movie_Title" msprop:Generator_ColumnPropNameInTable="Movie_TitleColumn" msprop:Generator_ColumnPropNameInRow="Movie_Title" msprop:Generator_ColumnVarNameInTable="columnMovie_Title">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_UserColumnName="Email" msprop:Generator_ColumnVarNameInTable="columnEmail">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_UserColumnName="Address" msprop:Generator_ColumnVarNameInTable="columnAddress">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_UserColumnName="Phone" msprop:Generator_ColumnVarNameInTable="columnPhone">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Point" msprop:Generator_ColumnPropNameInTable="PointColumn" msprop:Generator_ColumnPropNameInRow="Point" msprop:Generator_UserColumnName="Point" msprop:Generator_ColumnVarNameInTable="columnPoint" type="xs:int" />
-              <xs:element name="isVip" msprop:Generator_ColumnPropNameInTable="isVipColumn" msprop:Generator_ColumnPropNameInRow="isVip" msprop:Generator_UserColumnName="isVip" msprop:Generator_ColumnVarNameInTable="columnisVip" type="xs:boolean" />
+              <xs:element name="Seat" msprop:Generator_UserColumnName="Seat" msprop:Generator_ColumnPropNameInTable="SeatColumn" msprop:Generator_ColumnPropNameInRow="Seat" msprop:Generator_ColumnVarNameInTable="columnSeat" type="xs:int" />
+              <xs:element name="Paid" msprop:Generator_UserColumnName="Paid" msprop:Generator_ColumnPropNameInTable="PaidColumn" msprop:Generator_ColumnPropNameInRow="Paid" msprop:Generator_ColumnVarNameInTable="columnPaid" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AllEmployees" msprop:Generator_RowEvHandlerName="AllEmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="AllEmployeesRowDeleted" msprop:Generator_RowDeletingName="AllEmployeesRowDeleting" msprop:Generator_RowEvArgName="AllEmployeesRowChangeEvent" msprop:Generator_TablePropName="AllEmployees" msprop:Generator_RowChangedName="AllEmployeesRowChanged" msprop:Generator_UserTableName="AllEmployees" msprop:Generator_RowChangingName="AllEmployeesRowChanging" msprop:Generator_RowClassName="AllEmployeesRow" msprop:Generator_TableClassName="AllEmployeesDataTable" msprop:Generator_TableVarName="tableAllEmployees">
+        <xs:element name="View_AllEmployees" msprop:Generator_RowEvHandlerName="View_AllEmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="View_AllEmployeesRowDeleted" msprop:Generator_RowDeletingName="View_AllEmployeesRowDeleting" msprop:Generator_RowEvArgName="View_AllEmployeesRowChangeEvent" msprop:Generator_TablePropName="View_AllEmployees" msprop:Generator_RowChangedName="View_AllEmployeesRowChanged" msprop:Generator_RowChangingName="View_AllEmployeesRowChanging" msprop:Generator_TableClassName="View_AllEmployeesDataTable" msprop:Generator_RowClassName="View_AllEmployeesRow" msprop:Generator_TableVarName="tableView_AllEmployees" msprop:Generator_UserTableName="View_AllEmployees">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="User_ID" msprop:Generator_ColumnPropNameInTable="User_IDColumn" msprop:Generator_ColumnPropNameInRow="User_ID" msprop:Generator_UserColumnName="User_ID" msprop:Generator_ColumnVarNameInTable="columnUser_ID">
+              <xs:element name="User_ID" msprop:Generator_ColumnPropNameInRow="User_ID" msprop:Generator_ColumnPropNameInTable="User_IDColumn" msprop:Generator_ColumnVarNameInTable="columnUser_ID" msprop:Generator_UserColumnName="User_ID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName">
+              <xs:element name="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_UserColumnName="Email" msprop:Generator_ColumnVarNameInTable="columnEmail">
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_UserColumnName="Address" msprop:Generator_ColumnVarNameInTable="columnAddress">
+              <xs:element name="Address" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_UserColumnName="Address">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_UserColumnName="Phone" msprop:Generator_ColumnVarNameInTable="columnPhone">
+              <xs:element name="Phone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_UserColumnName="Phone">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Role" msprop:Generator_ColumnPropNameInTable="RoleColumn" msprop:Generator_ColumnPropNameInRow="Role" msprop:Generator_UserColumnName="Role" msprop:Generator_ColumnVarNameInTable="columnRole">
+              <xs:element name="Role" msprop:Generator_ColumnPropNameInRow="Role" msprop:Generator_ColumnPropNameInTable="RoleColumn" msprop:Generator_ColumnVarNameInTable="columnRole" msprop:Generator_UserColumnName="Role">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -995,26 +973,46 @@ where A.User_ID = @UserID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Statement" msprop:Generator_RowEvHandlerName="StatementRowChangeEventHandler" msprop:Generator_RowDeletedName="StatementRowDeleted" msprop:Generator_RowDeletingName="StatementRowDeleting" msprop:Generator_RowEvArgName="StatementRowChangeEvent" msprop:Generator_TablePropName="Statement" msprop:Generator_RowChangedName="StatementRowChanged" msprop:Generator_RowChangingName="StatementRowChanging" msprop:Generator_TableClassName="StatementDataTable" msprop:Generator_RowClassName="StatementRow" msprop:Generator_TableVarName="tableStatement" msprop:Generator_UserTableName="Statement">
+        <xs:element name="View_AllCustomers" msprop:Generator_RowEvHandlerName="View_AllCustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="View_AllCustomersRowDeleted" msprop:Generator_RowDeletingName="View_AllCustomersRowDeleting" msprop:Generator_RowEvArgName="View_AllCustomersRowChangeEvent" msprop:Generator_TablePropName="View_AllCustomers" msprop:Generator_RowChangedName="View_AllCustomersRowChanged" msprop:Generator_RowChangingName="View_AllCustomersRowChanging" msprop:Generator_TableClassName="View_AllCustomersDataTable" msprop:Generator_RowClassName="View_AllCustomersRow" msprop:Generator_TableVarName="tableView_AllCustomers" msprop:Generator_UserTableName="View_AllCustomers">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Reservation_ID" msprop:Generator_ColumnPropNameInRow="Reservation_ID" msprop:Generator_ColumnPropNameInTable="Reservation_IDColumn" msprop:Generator_ColumnVarNameInTable="columnReservation_ID" msprop:Generator_UserColumnName="Reservation_ID" type="xs:int" />
-              <xs:element name="ShowTime_ID" msprop:Generator_ColumnPropNameInRow="ShowTime_ID" msprop:Generator_ColumnPropNameInTable="ShowTime_IDColumn" msprop:Generator_ColumnVarNameInTable="columnShowTime_ID" msprop:Generator_UserColumnName="ShowTime_ID">
+              <xs:element name="User_ID" msprop:Generator_ColumnPropNameInRow="User_ID" msprop:Generator_ColumnPropNameInTable="User_IDColumn" msprop:Generator_ColumnVarNameInTable="columnUser_ID" msprop:Generator_UserColumnName="User_ID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Movie_Title" msprop:Generator_ColumnPropNameInRow="Movie_Title" msprop:Generator_ColumnPropNameInTable="Movie_TitleColumn" msprop:Generator_ColumnVarNameInTable="columnMovie_Title" msprop:Generator_UserColumnName="Movie_Title">
+              <xs:element name="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_UserColumnName="Name">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Seat" msprop:Generator_ColumnPropNameInRow="Seat" msprop:Generator_ColumnPropNameInTable="SeatColumn" msprop:Generator_ColumnVarNameInTable="columnSeat" msprop:Generator_UserColumnName="Seat" type="xs:int" />
-              <xs:element name="Paid" msprop:Generator_ColumnPropNameInRow="Paid" msprop:Generator_ColumnPropNameInTable="PaidColumn" msprop:Generator_ColumnVarNameInTable="columnPaid" msprop:Generator_UserColumnName="Paid" type="xs:int" minOccurs="0" />
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_UserColumnName="Address">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_UserColumnName="Phone">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Point" msprop:Generator_ColumnPropNameInRow="Point" msprop:Generator_ColumnPropNameInTable="PointColumn" msprop:Generator_ColumnVarNameInTable="columnPoint" msprop:Generator_UserColumnName="Point" type="xs:int" />
+              <xs:element name="isVip" msprop:Generator_ColumnPropNameInRow="isVip" msprop:Generator_ColumnPropNameInTable="isVipColumn" msprop:Generator_ColumnVarNameInTable="columnisVip" msprop:Generator_UserColumnName="isVip" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1044,31 +1042,27 @@ where A.User_ID = @UserID</CommandText>
       <xs:selector xpath=".//mstns:User_Information" />
       <xs:field xpath="mstns:User_ID" />
     </xs:unique>
-    <xs:unique name="AllEmployees_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:AllEmployees" />
-      <xs:field xpath="mstns:User_ID" />
-    </xs:unique>
     <xs:unique name="Statement_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Statement" />
       <xs:field xpath="mstns:Reservation_ID" />
     </xs:unique>
+    <xs:unique name="View_AllEmployees_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_AllEmployees" />
+      <xs:field xpath="mstns:User_ID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Admin_User_Information" msdata:parent="User_Information" msdata:child="Admin" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Admin" msprop:Generator_RelationVarName="relationFK_Admin_User_Information" msprop:Generator_ChildPropName="GetAdminRows" msprop:Generator_ParentPropName="User_InformationRow" msprop:Generator_UserRelationName="FK_Admin_User_Information" />
-      <msdata:Relationship name="FK_Customer_User_Information" msdata:parent="User_Information" msdata:child="Customer" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Customer" msprop:Generator_RelationVarName="relationFK_Customer_User_Information" msprop:Generator_ChildPropName="GetCustomerRows" msprop:Generator_ParentPropName="User_InformationRow" msprop:Generator_UserRelationName="FK_Customer_User_Information" />
-      <msdata:Relationship name="FK_Movie_Company" msdata:parent="Company" msdata:child="Movie" msdata:parentkey="Company_ID" msdata:childkey="Company_ID" msprop:Generator_UserParentTable="Company" msprop:Generator_UserChildTable="Movie" msprop:Generator_RelationVarName="relationFK_Movie_Company" msprop:Generator_ChildPropName="GetMovieRows" msprop:Generator_UserRelationName="FK_Movie_Company" msprop:Generator_ParentPropName="CompanyRow" />
-      <msdata:Relationship name="FK_Reservation_ShowTime" msdata:parent="ShowTime" msdata:child="Reservation" msdata:parentkey="ShowTime_ID" msdata:childkey="ShowTime_ID" msprop:Generator_UserParentTable="ShowTime" msprop:Generator_UserChildTable="Reservation" msprop:Generator_RelationVarName="relationFK_Reservation_ShowTime" msprop:Generator_ChildPropName="GetReservationRows" msprop:Generator_ParentPropName="ShowTimeRow" msprop:Generator_UserRelationName="FK_Reservation_ShowTime" />
-      <msdata:Relationship name="FK_Reservation_User_Information" msdata:parent="User_Information" msdata:child="Reservation" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Reservation" msprop:Generator_RelationVarName="relationFK_Reservation_User_Information" msprop:Generator_ChildPropName="GetReservationRows" msprop:Generator_ParentPropName="User_InformationRow" msprop:Generator_UserRelationName="FK_Reservation_User_Information" />
-      <msdata:Relationship name="FK_Review_Reservation" msdata:parent="Reservation" msdata:child="Review" msdata:parentkey="Reservation_ID" msdata:childkey="Reservation_ID" msprop:Generator_UserParentTable="Reservation" msprop:Generator_UserChildTable="Review" msprop:Generator_RelationVarName="relationFK_Review_Reservation" msprop:Generator_ChildPropName="GetReviewRows" msprop:Generator_UserRelationName="FK_Review_Reservation" msprop:Generator_ParentPropName="ReservationRow" />
-      <msdata:Relationship name="FK_ShowTime_Movie" msdata:parent="Movie" msdata:child="ShowTime" msdata:parentkey="Movie_ID" msdata:childkey="Movie_ID" msprop:Generator_UserParentTable="Movie" msprop:Generator_UserChildTable="ShowTime" msprop:Generator_RelationVarName="relationFK_ShowTime_Movie" msprop:Generator_ChildPropName="GetShowTimeRows" msprop:Generator_UserRelationName="FK_ShowTime_Movie" msprop:Generator_ParentPropName="MovieRow" />
-      <msdata:Relationship name="FK_ShowTime_Room" msdata:parent="Room" msdata:child="ShowTime" msdata:parentkey="Room_ID" msdata:childkey="Room_ID" msprop:Generator_UserParentTable="Room" msprop:Generator_UserChildTable="ShowTime" msprop:Generator_RelationVarName="relationFK_ShowTime_Room" msprop:Generator_ChildPropName="GetShowTimeRows" msprop:Generator_UserRelationName="FK_ShowTime_Room" msprop:Generator_ParentPropName="RoomRow" />
-      <msdata:Relationship name="FK_Customer_User_Information1" msdata:parent="User_Information" msdata:child="AllCustomers" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="AllCustomers" msprop:Generator_RelationVarName="relationFK_Customer_User_Information1" msprop:Generator_ChildPropName="GetAllCustomersRows" msprop:Generator_UserRelationName="FK_Customer_User_Information1" msprop:Generator_ParentPropName="User_InformationRow" />
-      <msdata:Relationship name="FK_Admin_User_Information1" msdata:parent="AllEmployees" msdata:child="Admin" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="AllEmployees" msprop:Generator_UserChildTable="Admin" msprop:Generator_RelationVarName="relationFK_Admin_User_Information1" msprop:Generator_ChildPropName="GetAdminRows" msprop:Generator_UserRelationName="FK_Admin_User_Information1" msprop:Generator_ParentPropName="AllEmployeesRow" />
-      <msdata:Relationship name="FK_Customer_User_Information2" msdata:parent="AllEmployees" msdata:child="Customer" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="AllEmployees" msprop:Generator_UserChildTable="Customer" msprop:Generator_RelationVarName="relationFK_Customer_User_Information2" msprop:Generator_ChildPropName="GetCustomerRows" msprop:Generator_UserRelationName="FK_Customer_User_Information2" msprop:Generator_ParentPropName="AllEmployeesRow" />
-      <msdata:Relationship name="FK_Reservation_User_Information1" msdata:parent="AllEmployees" msdata:child="Reservation" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="AllEmployees" msprop:Generator_UserChildTable="Reservation" msprop:Generator_RelationVarName="relationFK_Reservation_User_Information1" msprop:Generator_ChildPropName="GetReservationRows" msprop:Generator_UserRelationName="FK_Reservation_User_Information1" msprop:Generator_ParentPropName="AllEmployeesRow" />
-      <msdata:Relationship name="FK_Review_Reservation1" msdata:parent="Statement" msdata:child="Review" msdata:parentkey="Reservation_ID" msdata:childkey="Reservation_ID" msprop:Generator_UserParentTable="Statement" msprop:Generator_UserChildTable="Review" msprop:Generator_RelationVarName="relationFK_Review_Reservation1" msprop:Generator_UserRelationName="FK_Review_Reservation1" msprop:Generator_ChildPropName="GetReviewRows" msprop:Generator_ParentPropName="StatementRow" />
-      <msdata:Relationship name="FK_Reservation_ShowTime1" msdata:parent="ShowTime" msdata:child="Statement" msdata:parentkey="ShowTime_ID" msdata:childkey="ShowTime_ID" msprop:Generator_UserParentTable="ShowTime" msprop:Generator_UserChildTable="Statement" msprop:Generator_RelationVarName="relationFK_Reservation_ShowTime1" msprop:Generator_ChildPropName="GetStatementRows" msprop:Generator_ParentPropName="ShowTimeRow" msprop:Generator_UserRelationName="FK_Reservation_ShowTime1" />
+      <msdata:Relationship name="FK_Admin_User_Information" msdata:parent="User_Information" msdata:child="Admin" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Admin" msprop:Generator_RelationVarName="relationFK_Admin_User_Information" msprop:Generator_ChildPropName="GetAdminRows" msprop:Generator_UserRelationName="FK_Admin_User_Information" msprop:Generator_ParentPropName="User_InformationRow" />
+      <msdata:Relationship name="FK_Customer_User_Information" msdata:parent="User_Information" msdata:child="Customer" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Customer" msprop:Generator_RelationVarName="relationFK_Customer_User_Information" msprop:Generator_ChildPropName="GetCustomerRows" msprop:Generator_UserRelationName="FK_Customer_User_Information" msprop:Generator_ParentPropName="User_InformationRow" />
+      <msdata:Relationship name="FK_Movie_Company" msdata:parent="Company" msdata:child="Movie" msdata:parentkey="Company_ID" msdata:childkey="Company_ID" msprop:Generator_UserParentTable="Company" msprop:Generator_UserChildTable="Movie" msprop:Generator_RelationVarName="relationFK_Movie_Company" msprop:Generator_ChildPropName="GetMovieRows" msprop:Generator_ParentPropName="CompanyRow" msprop:Generator_UserRelationName="FK_Movie_Company" />
+      <msdata:Relationship name="FK_Reservation_ShowTime" msdata:parent="ShowTime" msdata:child="Reservation" msdata:parentkey="ShowTime_ID" msdata:childkey="ShowTime_ID" msprop:Generator_UserParentTable="ShowTime" msprop:Generator_UserChildTable="Reservation" msprop:Generator_RelationVarName="relationFK_Reservation_ShowTime" msprop:Generator_ChildPropName="GetReservationRows" msprop:Generator_UserRelationName="FK_Reservation_ShowTime" msprop:Generator_ParentPropName="ShowTimeRow" />
+      <msdata:Relationship name="FK_Reservation_User_Information" msdata:parent="User_Information" msdata:child="Reservation" msdata:parentkey="User_ID" msdata:childkey="User_ID" msprop:Generator_UserParentTable="User_Information" msprop:Generator_UserChildTable="Reservation" msprop:Generator_RelationVarName="relationFK_Reservation_User_Information" msprop:Generator_ChildPropName="GetReservationRows" msprop:Generator_UserRelationName="FK_Reservation_User_Information" msprop:Generator_ParentPropName="User_InformationRow" />
+      <msdata:Relationship name="FK_Review_Reservation" msdata:parent="Reservation" msdata:child="Review" msdata:parentkey="Reservation_ID" msdata:childkey="Reservation_ID" msprop:Generator_UserParentTable="Reservation" msprop:Generator_UserChildTable="Review" msprop:Generator_RelationVarName="relationFK_Review_Reservation" msprop:Generator_ChildPropName="GetReviewRows" msprop:Generator_ParentPropName="ReservationRow" msprop:Generator_UserRelationName="FK_Review_Reservation" />
+      <msdata:Relationship name="FK_ShowTime_Movie" msdata:parent="Movie" msdata:child="ShowTime" msdata:parentkey="Movie_ID" msdata:childkey="Movie_ID" msprop:Generator_UserParentTable="Movie" msprop:Generator_UserChildTable="ShowTime" msprop:Generator_RelationVarName="relationFK_ShowTime_Movie" msprop:Generator_ChildPropName="GetShowTimeRows" msprop:Generator_ParentPropName="MovieRow" msprop:Generator_UserRelationName="FK_ShowTime_Movie" />
+      <msdata:Relationship name="FK_ShowTime_Room" msdata:parent="Room" msdata:child="ShowTime" msdata:parentkey="Room_ID" msdata:childkey="Room_ID" msprop:Generator_UserParentTable="Room" msprop:Generator_UserChildTable="ShowTime" msprop:Generator_RelationVarName="relationFK_ShowTime_Room" msprop:Generator_ChildPropName="GetShowTimeRows" msprop:Generator_ParentPropName="RoomRow" msprop:Generator_UserRelationName="FK_ShowTime_Room" />
+      <msdata:Relationship name="FK_Review_Reservation1" msdata:parent="Statement" msdata:child="Review" msdata:parentkey="Reservation_ID" msdata:childkey="Reservation_ID" msprop:Generator_UserParentTable="Statement" msprop:Generator_UserChildTable="Review" msprop:Generator_RelationVarName="relationFK_Review_Reservation1" msprop:Generator_ChildPropName="GetReviewRows" msprop:Generator_ParentPropName="StatementRow" msprop:Generator_UserRelationName="FK_Review_Reservation1" />
+      <msdata:Relationship name="FK_Reservation_ShowTime1" msdata:parent="ShowTime" msdata:child="Statement" msdata:parentkey="ShowTime_ID" msdata:childkey="ShowTime_ID" msprop:Generator_UserParentTable="ShowTime" msprop:Generator_UserChildTable="Statement" msprop:Generator_RelationVarName="relationFK_Reservation_ShowTime1" msprop:Generator_ChildPropName="GetStatementRows" msprop:Generator_UserRelationName="FK_Reservation_ShowTime1" msprop:Generator_ParentPropName="ShowTimeRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

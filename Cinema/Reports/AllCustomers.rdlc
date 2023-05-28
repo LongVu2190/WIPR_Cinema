@@ -6,25 +6,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67113in</Width>
+              <Width>1.69494in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -286,22 +286,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>VIP</Value>
-                              <Style>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>#666666</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
+                              <Value>is Vip</Value>
                               <Style>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -354,7 +339,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>User_ID</rd:DefaultName>
@@ -387,7 +374,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Name</rd:DefaultName>
@@ -420,7 +409,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Email</rd:DefaultName>
@@ -453,7 +444,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Address</rd:DefaultName>
@@ -486,7 +479,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Phone</rd:DefaultName>
@@ -554,7 +549,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>isVip</rd:DefaultName>
@@ -598,7 +595,7 @@
         </TablixRowHierarchy>
         <DataSetName>AllCustomers</DataSetName>
         <Height>0.5in</Height>
-        <Width>11.69793in</Width>
+        <Width>11.86458in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -609,10 +606,10 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>11.69793in</Width>
+  <Width>11.86458in</Width>
   <Page>
     <PageHeader>
-      <Height>0.72917in</Height>
+      <Height>1in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -629,16 +626,14 @@
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
+              <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>0.24875in</Top>
-          <Left>4.39458in</Left>
-          <Height>0.25in</Height>
-          <Width>1.48958in</Width>
+          <Top>0.3425in</Top>
+          <Left>4.63417in</Left>
+          <Height>0.32292in</Height>
+          <Width>1.51042in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -669,7 +664,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>8d42df0f-c2f1-4e4a-86fa-02fd6246cc6b</rd:DataSourceID>
+      <rd:DataSourceID>2161f228-b41b-403b-8ea5-3646495bf526</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -711,13 +706,13 @@
       <rd:DataSetInfo>
         <rd:DataSetName>CinemaDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\LongVu\Desktop\WIPR_Cinema\Cinema\CinemaDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>AllCustomers</rd:TableName>
+        <rd:TableName>View_AllCustomers</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>AllCustomersTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>View_AllCustomersTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>308c5f46-1938-491a-88da-5ac791743443</rd:ReportID>
+  <rd:ReportID>68744eb6-b6d0-46a1-a753-1cd16d6f2864</rd:ReportID>
 </Report>

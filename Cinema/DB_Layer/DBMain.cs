@@ -11,7 +11,7 @@ namespace Cinema.DB_Layer
 {
     internal class DBMain
     {
-        string strConnectionString = "Data Source=localhost;Initial Catalog=Cinema;Integrated Security=False;User ID=sa;Password=123456";
+        string strConnectionString = "Data Source=localhost;Initial Catalog=Cinema;Integrated Security=True";
 
         SqlConnection con = null;
         SqlDataAdapter sql_data = null;

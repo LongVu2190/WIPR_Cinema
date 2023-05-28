@@ -79,6 +79,9 @@
     <Compile Include="Booking.Designer.cs">
       <DependentUpon>Booking.cs</DependentUpon>
     </Compile>
+    <Compile Include="CinemaDataSet.cs">
+      <DependentUpon>CinemaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CinemaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,14 +168,14 @@
     <EmbeddedResource Include="ReportForms\AllCustomers.resx">
       <DependentUpon>AllCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportForms\AllEmployees.resx">
-      <DependentUpon>AllEmployees.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\Statement.resx">
       <DependentUpon>Statement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\AllComments.rdlc" />
     <EmbeddedResource Include="Reports\AllCustomers.rdlc" />
+    <EmbeddedResource Include="ReportForms\AllEmployees.resx">
+      <DependentUpon>AllEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AllComments.rdlc" />
     <EmbeddedResource Include="Reports\AllEmployees.rdlc" />
     <EmbeddedResource Include="Reports\Statement.rdlc" />
     <None Include="CinemaDataSet.xsc">

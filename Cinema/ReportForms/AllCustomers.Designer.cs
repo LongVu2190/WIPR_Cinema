@@ -32,52 +32,52 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllCustomers));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.allCustomersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cinemaDataSet = new Cinema.CinemaDataSet();
-            this.allCustomersTableAdapter = new Cinema.CinemaDataSetTableAdapters.AllCustomersTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.allCustomersBindingSource)).BeginInit();
+            this.viewAllCustomersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.view_AllCustomersTableAdapter = new Cinema.CinemaDataSetTableAdapters.View_AllCustomersTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewAllCustomersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             reportDataSource1.Name = "AllCustomers";
-            reportDataSource1.Value = this.allCustomersBindingSource;
+            reportDataSource1.Value = this.viewAllCustomersBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Cinema.Reports.AllCustomers.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 12);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1060, 426);
+            this.reportViewer1.Size = new System.Drawing.Size(869, 426);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // allCustomersBindingSource
-            // 
-            this.allCustomersBindingSource.DataMember = "AllCustomers";
-            this.allCustomersBindingSource.DataSource = this.cinemaDataSet;
             // 
             // cinemaDataSet
             // 
             this.cinemaDataSet.DataSetName = "CinemaDataSet";
             this.cinemaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // allCustomersTableAdapter
+            // viewAllCustomersBindingSource
             // 
-            this.allCustomersTableAdapter.ClearBeforeFill = true;
+            this.viewAllCustomersBindingSource.DataMember = "View_AllCustomers";
+            this.viewAllCustomersBindingSource.DataSource = this.cinemaDataSet;
+            // 
+            // view_AllCustomersTableAdapter
+            // 
+            this.view_AllCustomersTableAdapter.ClearBeforeFill = true;
             // 
             // AllCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 450);
+            this.ClientSize = new System.Drawing.Size(893, 450);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllCustomers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "All Customers";
             this.Load += new System.EventHandler(this.AllCustomers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.allCustomersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cinemaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewAllCustomersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,7 +86,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private CinemaDataSet cinemaDataSet;
-        private System.Windows.Forms.BindingSource allCustomersBindingSource;
-        private CinemaDataSetTableAdapters.AllCustomersTableAdapter allCustomersTableAdapter;
+        private System.Windows.Forms.BindingSource viewAllCustomersBindingSource;
+        private CinemaDataSetTableAdapters.View_AllCustomersTableAdapter view_AllCustomersTableAdapter;
     }
 }
