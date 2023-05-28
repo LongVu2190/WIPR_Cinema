@@ -63,15 +63,6 @@ namespace Cinema.BS_Layer
                 case AdminType.ClosedShowing:
                     sql = "select * from View_ClosedShowing";
                     break;
-                case AdminType.ShowingInDayAvailable:
-                    sql = "select * from View_ShowingInDayAvailable";
-                    break;
-                case AdminType.ShowingInDayOut:
-                    sql = "select * from View_ShowingInDayAvailable";
-                    break;
-                case AdminType.HighRatingShowing:
-                    sql = "select * from View_HighRatingShowing";
-                    break;
                 case AdminType.Reservation:
                     sql = "select * from Reservation";
                     break;

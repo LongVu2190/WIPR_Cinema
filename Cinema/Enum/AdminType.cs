@@ -7,9 +7,6 @@
         ShowingInDay,
         ComingShowing,
         ClosedShowing,
-        ShowingInDayAvailable,
-        ShowingInDayOut,
-        HighRatingShowing,
         Reservation,
         Company,
         Room

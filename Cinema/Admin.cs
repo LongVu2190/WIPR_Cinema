@@ -51,11 +51,8 @@ namespace Cinema
             this.Filter.Items.AddRange(new object[] {
             "ShowingInDay",
             "ComingShowing",
-            "ClosedShowing",
-            "ShowingInDayAvailable",
-            "ShowingInDayOut",
-            "HighRatingShowing" });
-            this.Filter.Text = "6 Filters";
+            "ClosedShowing", });
+            this.Filter.Text = "3 Filters";
             this.add_btn.Enabled = true;
             this.delete_btn.Enabled = false;
         }
@@ -148,12 +145,6 @@ namespace Cinema
                 DataView.DataSource = bs.LoadData(AdminType.ComingShowing);
             else if (Filter.Text == "ClosedShowing")
                 DataView.DataSource = bs.LoadData(AdminType.ClosedShowing);
-            else if (Filter.Text == "ShowingInDayAvailable")
-                DataView.DataSource = bs.LoadData(AdminType.ShowingInDayAvailable);
-            else if (Filter.Text == "ShowingInDayOut")
-                DataView.DataSource = bs.LoadData(AdminType.ShowingInDayOut);
-            else if (Filter.Text == "HighRatingShowing")
-                DataView.DataSource = bs.LoadData(AdminType.HighRatingShowing);
         }
 
         private void add_btn_Click(object sender, EventArgs e)
