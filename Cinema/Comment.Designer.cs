@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Comment));
             this.Reservation_ID_tb = new System.Windows.Forms.TextBox();
             this.Comment_tb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -130,6 +131,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Comment_tb);
             this.Controls.Add(this.Reservation_ID_tb);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Comment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Comment";

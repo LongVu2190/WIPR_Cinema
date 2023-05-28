@@ -42,7 +42,6 @@
             this.Balance_lb = new System.Windows.Forms.Label();
             this.Point_lb = new System.Windows.Forms.Label();
             this.VIP_lb = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.Booked_btn = new System.Windows.Forms.Button();
             this.Coming_btn = new System.Windows.Forms.Button();
             this.Comment_btn = new System.Windows.Forms.Button();
@@ -61,7 +60,9 @@
             this.FindCompany_btn = new System.Windows.Forms.Button();
             this.Company_tb = new System.Windows.Forms.TextBox();
             this.FindScreen_btn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Movies_Data
@@ -80,7 +81,7 @@
             this.Book_btn.BackColor = System.Drawing.Color.RoyalBlue;
             this.Book_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Book_btn.ForeColor = System.Drawing.Color.White;
-            this.Book_btn.Location = new System.Drawing.Point(220, 313);
+            this.Book_btn.Location = new System.Drawing.Point(219, 348);
             this.Book_btn.Name = "Book_btn";
             this.Book_btn.Size = new System.Drawing.Size(90, 29);
             this.Book_btn.TabIndex = 15;
@@ -201,16 +202,6 @@
             this.VIP_lb.TabIndex = 35;
             this.VIP_lb.Text = "VIP";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(202, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 20);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "------Screen-------";
-            // 
             // Booked_btn
             // 
             this.Booked_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -306,7 +297,7 @@
             this.Statement.BackColor = System.Drawing.Color.RoyalBlue;
             this.Statement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Statement.ForeColor = System.Drawing.Color.White;
-            this.Statement.Location = new System.Drawing.Point(32, 313);
+            this.Statement.Location = new System.Drawing.Point(32, 348);
             this.Statement.Name = "Statement";
             this.Statement.Size = new System.Drawing.Size(108, 29);
             this.Statement.TabIndex = 52;
@@ -412,12 +403,23 @@
             this.FindScreen_btn.UseVisualStyleBackColor = true;
             this.FindScreen_btn.Click += new System.EventHandler(this.Finder_click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cinema.Properties.Resources.Picture3;
+            this.pictureBox1.Location = new System.Drawing.Point(129, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(265, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 62;
+            this.pictureBox1.TabStop = false;
+            // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1285, 509);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Screen_tb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -436,7 +438,6 @@
             this.Controls.Add(this.Comment_btn);
             this.Controls.Add(this.Coming_btn);
             this.Controls.Add(this.Booked_btn);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.VIP_lb);
             this.Controls.Add(this.Point_lb);
             this.Controls.Add(this.Balance_lb);
@@ -457,6 +458,7 @@
             this.Text = "Cinema";
             this.Load += new System.EventHandler(this.Cinema_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -477,7 +479,6 @@
         private System.Windows.Forms.Label Balance_lb;
         private System.Windows.Forms.Label Point_lb;
         private System.Windows.Forms.Label VIP_lb;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Booked_btn;
         private System.Windows.Forms.Button Coming_btn;
         private System.Windows.Forms.Button Comment_btn;
@@ -496,6 +497,7 @@
         private System.Windows.Forms.Button FindCompany_btn;
         private System.Windows.Forms.TextBox Company_tb;
         private System.Windows.Forms.Button FindScreen_btn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

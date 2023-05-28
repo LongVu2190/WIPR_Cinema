@@ -207,6 +207,7 @@
     <None Include="Resources\123-1236782_stray-cat-clip-art.png" />
     <None Include="Resources\Picture1.png" />
     <None Include="Resources\Picture2.png" />
+    <None Include="Resources\Picture3.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

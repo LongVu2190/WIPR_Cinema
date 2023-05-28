@@ -70,12 +70,9 @@ namespace Cinema
                 b.Name = Count.ToString();
                 b.Size = new Size(50, 50);
                 b.Font = new Font("Arial", 12, FontStyle.Bold);
-                b.Location = new Point(60 * (X + 1), Y + 50);
+                b.Location = new Point(60 * (X + 1), Y + 90);
                 switch (movie.SEATS[i])
                 {
-                    case -1:
-                        b.BackColor = Color.DodgerBlue;
-                        break;
                     case 0:
                         b.BackColor = Color.LightSlateGray;
                         break;
