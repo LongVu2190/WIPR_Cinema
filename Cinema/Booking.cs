@@ -220,6 +220,18 @@ namespace Cinema
             string type = "";
             switch (bt.Name)
             {
+                case "FindScreen_btn":
+                    flag = MovieType.ByScreen;
+                    type = Screen_tb.Text;
+                    break;
+                case "FindCompany_btn":
+                    flag = MovieType.ByCompany;
+                    type = Company_tb.Text;
+                    break;
+                case "FindActor_btn":
+                    flag = MovieType.ByActor;
+                    type = Actor_tb.Text;
+                    break;
                 case "InDay_btn":
                     flag = MovieType.InDay;
                     break;

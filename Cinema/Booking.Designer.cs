@@ -52,6 +52,15 @@
             this.AllComment_btn = new System.Windows.Forms.Button();
             this.Reservation_ID_tb = new System.Windows.Forms.TextBox();
             this.Statement = new System.Windows.Forms.Button();
+            this.Screen_tb = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.FindActor_btn = new System.Windows.Forms.Button();
+            this.Actor_tb = new System.Windows.Forms.TextBox();
+            this.FindCompany_btn = new System.Windows.Forms.Button();
+            this.Company_tb = new System.Windows.Forms.TextBox();
+            this.FindScreen_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +71,7 @@
             this.Movies_Data.Location = new System.Drawing.Point(529, 50);
             this.Movies_Data.Name = "Movies_Data";
             this.Movies_Data.ReadOnly = true;
-            this.Movies_Data.Size = new System.Drawing.Size(727, 324);
+            this.Movies_Data.Size = new System.Drawing.Size(727, 279);
             this.Movies_Data.TabIndex = 14;
             this.Movies_Data.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Movies_Data_CellClick);
             // 
@@ -205,7 +214,7 @@
             // Booked_btn
             // 
             this.Booked_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Booked_btn.Location = new System.Drawing.Point(910, 401);
+            this.Booked_btn.Location = new System.Drawing.Point(910, 345);
             this.Booked_btn.Name = "Booked_btn";
             this.Booked_btn.Size = new System.Drawing.Size(140, 29);
             this.Booked_btn.TabIndex = 37;
@@ -230,7 +239,7 @@
             // 
             this.Comment_btn.Enabled = false;
             this.Comment_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Comment_btn.Location = new System.Drawing.Point(1106, 401);
+            this.Comment_btn.Location = new System.Drawing.Point(1106, 345);
             this.Comment_btn.Name = "Comment_btn";
             this.Comment_btn.Size = new System.Drawing.Size(100, 29);
             this.Comment_btn.TabIndex = 43;
@@ -262,7 +271,7 @@
             // Commented_btn
             // 
             this.Commented_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Commented_btn.Location = new System.Drawing.Point(764, 401);
+            this.Commented_btn.Location = new System.Drawing.Point(764, 345);
             this.Commented_btn.Name = "Commented_btn";
             this.Commented_btn.Size = new System.Drawing.Size(140, 29);
             this.Commented_btn.TabIndex = 47;
@@ -274,7 +283,7 @@
             // AllComment_btn
             // 
             this.AllComment_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AllComment_btn.Location = new System.Drawing.Point(529, 401);
+            this.AllComment_btn.Location = new System.Drawing.Point(529, 345);
             this.AllComment_btn.Name = "AllComment_btn";
             this.AllComment_btn.Size = new System.Drawing.Size(140, 29);
             this.AllComment_btn.TabIndex = 48;
@@ -286,7 +295,7 @@
             // Reservation_ID_tb
             // 
             this.Reservation_ID_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Reservation_ID_tb.Location = new System.Drawing.Point(1212, 401);
+            this.Reservation_ID_tb.Location = new System.Drawing.Point(1212, 345);
             this.Reservation_ID_tb.Name = "Reservation_ID_tb";
             this.Reservation_ID_tb.ReadOnly = true;
             this.Reservation_ID_tb.Size = new System.Drawing.Size(44, 29);
@@ -306,12 +315,118 @@
             this.Statement.UseVisualStyleBackColor = false;
             this.Statement.Click += new System.EventHandler(this.Statement_Click);
             // 
+            // Screen_tb
+            // 
+            this.Screen_tb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Screen_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Screen_tb.FormattingEnabled = true;
+            this.Screen_tb.Items.AddRange(new object[] {
+            "8K",
+            "4K",
+            "2K",
+            "FullHD"});
+            this.Screen_tb.Location = new System.Drawing.Point(688, 393);
+            this.Screen_tb.Name = "Screen_tb";
+            this.Screen_tb.Size = new System.Drawing.Size(141, 28);
+            this.Screen_tb.TabIndex = 61;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(527, 470);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 20);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "Movie by Main Actor";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(527, 434);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 20);
+            this.label2.TabIndex = 59;
+            this.label2.Text = "Movie by Company";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(527, 398);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "Movie by Resolution";
+            // 
+            // FindActor_btn
+            // 
+            this.FindActor_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindActor_btn.Location = new System.Drawing.Point(848, 463);
+            this.FindActor_btn.Name = "FindActor_btn";
+            this.FindActor_btn.Size = new System.Drawing.Size(84, 29);
+            this.FindActor_btn.TabIndex = 57;
+            this.FindActor_btn.Tag = "NoDel";
+            this.FindActor_btn.Text = "Find";
+            this.FindActor_btn.UseVisualStyleBackColor = true;
+            this.FindActor_btn.Click += new System.EventHandler(this.Finder_click);
+            // 
+            // Actor_tb
+            // 
+            this.Actor_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Actor_tb.Location = new System.Drawing.Point(688, 463);
+            this.Actor_tb.Name = "Actor_tb";
+            this.Actor_tb.Size = new System.Drawing.Size(141, 29);
+            this.Actor_tb.TabIndex = 56;
+            // 
+            // FindCompany_btn
+            // 
+            this.FindCompany_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindCompany_btn.Location = new System.Drawing.Point(848, 428);
+            this.FindCompany_btn.Name = "FindCompany_btn";
+            this.FindCompany_btn.Size = new System.Drawing.Size(84, 29);
+            this.FindCompany_btn.TabIndex = 55;
+            this.FindCompany_btn.Tag = "NoDel";
+            this.FindCompany_btn.Text = "Find";
+            this.FindCompany_btn.UseVisualStyleBackColor = true;
+            this.FindCompany_btn.Click += new System.EventHandler(this.Finder_click);
+            // 
+            // Company_tb
+            // 
+            this.Company_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Company_tb.Location = new System.Drawing.Point(688, 428);
+            this.Company_tb.Name = "Company_tb";
+            this.Company_tb.Size = new System.Drawing.Size(141, 29);
+            this.Company_tb.TabIndex = 54;
+            // 
+            // FindScreen_btn
+            // 
+            this.FindScreen_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FindScreen_btn.Location = new System.Drawing.Point(848, 393);
+            this.FindScreen_btn.Name = "FindScreen_btn";
+            this.FindScreen_btn.Size = new System.Drawing.Size(84, 29);
+            this.FindScreen_btn.TabIndex = 53;
+            this.FindScreen_btn.Tag = "NoDel";
+            this.FindScreen_btn.Text = "Find";
+            this.FindScreen_btn.UseVisualStyleBackColor = true;
+            this.FindScreen_btn.Click += new System.EventHandler(this.Finder_click);
+            // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1285, 452);
+            this.ClientSize = new System.Drawing.Size(1285, 509);
+            this.Controls.Add(this.Screen_tb);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.FindActor_btn);
+            this.Controls.Add(this.Actor_tb);
+            this.Controls.Add(this.FindCompany_btn);
+            this.Controls.Add(this.Company_tb);
+            this.Controls.Add(this.FindScreen_btn);
             this.Controls.Add(this.Statement);
             this.Controls.Add(this.Reservation_ID_tb);
             this.Controls.Add(this.AllComment_btn);
@@ -372,6 +487,15 @@
         private System.Windows.Forms.Button AllComment_btn;
         private System.Windows.Forms.TextBox Reservation_ID_tb;
         private System.Windows.Forms.Button Statement;
+        private System.Windows.Forms.ComboBox Screen_tb;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button FindActor_btn;
+        private System.Windows.Forms.TextBox Actor_tb;
+        private System.Windows.Forms.Button FindCompany_btn;
+        private System.Windows.Forms.TextBox Company_tb;
+        private System.Windows.Forms.Button FindScreen_btn;
     }
 }
 
