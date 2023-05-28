@@ -54,10 +54,7 @@ namespace Cinema.BS_Layer
                     return db.LoadData(sql);
                 case MovieType.Coming:
                     sql = "select * from View_ComingShowing";
-                    return db.LoadData(sql);
-                case MovieType.AllComments:
-                    sql = "select * from View_Comments";
-                    return db.LoadData(sql);              
+                    return db.LoadData(sql);           
                 default:
                     return null;
             }
