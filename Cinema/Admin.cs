@@ -23,6 +23,7 @@ namespace Cinema
         private bool Movie = false;
         private bool Company = false;
         private bool Room = false;
+        private int row = 0;
         public Admin()
         {
             InitializeComponent();
@@ -246,6 +247,79 @@ namespace Cinema
             {
                 MessageBox.Show(ex.Message, "Notification");
             }
+        }
+
+        private void DataView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            row = DataView.CurrentCell.RowIndex;
+            if (row == DataView.RowCount - 1)
+            {
+                row = 0;
+                return;
+            }
+            if (ShowTime || Company || Room || Movie)
+            {
+                update_btn.Enabled = true;
+            }
+        }
+
+        private void update_btn_Click(object sender, EventArgs e)
+        {
+            if (row == 0) return;
+            if (ShowTime)
+            {
+                try
+                {
+                    bs.UpdateShowTime(this.DataView.Rows[row].Cells[0].Value.ToString(), this.DataView.Rows[row].Cells[1].Value.ToString(), this.DataView.Rows[row].Cells[2].Value.ToString(), this.DataView.Rows[row].Cells[3].Value.ToString(), this.DataView.Rows[row].Cells[8].Value.ToString());
+                    showingTimeToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
+            else if (Movie)
+            {
+                try
+                {
+                    bs.UpdateMovie(this.DataView.Rows[row].Cells[0].Value.ToString(), this.DataView.Rows[row].Cells[1].Value.ToString(), Int32.Parse(this.DataView.Rows[row].Cells[2].Value.ToString()), this.DataView.Rows[row].Cells[3].Value.ToString(), this.DataView.Rows[row].Cells[4].Value.ToString(), this.DataView.Rows[row].Cells[5].Value.ToString(), this.DataView.Rows[row].Cells[6].Value.ToString());
+                    moviesToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
+            else if (Company)
+            {
+                try
+                {
+                    bs.UpdateCompany(this.DataView.Rows[row].Cells["Company_ID"].Value.ToString(), this.DataView.Rows[row].Cells["Name"].Value.ToString(), this.DataView.Rows[row].Cells["Email"].Value.ToString(), this.DataView.Rows[row].Cells["Phone"].Value.ToString(), this.DataView.Rows[row].Cells["Address"].Value.ToString());
+                    companyToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
+            else if (Room)
+            {
+                int seats = Int32.Parse(this.DataView.Rows[row].Cells["MaxSeats"].Value.ToString());
+                try
+                {
+                    bs.UpdateRoom(this.DataView.Rows[row].Cells["Room_ID"].Value.ToString(), seats, this.DataView.Rows[row].Cells["Screen_Resolution"].Value.ToString(), this.DataView.Rows[row].Cells["Audio_Quality"].Value.ToString());
+                    roomToolStripMenuItem_Click(sender, e);
+                    MessageBox.Show("SUCCESS!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Notification");
+                }
+            }
+            update_btn.Enabled = false;
         }
     }
 }
