@@ -40,9 +40,6 @@ namespace Cinema.BS_Layer
                 case MovieType.UserCommented:
                     sql = $"select * from Fn_UserCommented('{ID}')";
                     return db.LoadData(sql);
-                case MovieType.MovieRating:
-                    sql = $"select * from Fn_MovieRating('{ID}')";
-                    return db.LoadData(sql);
                 case MovieType.InDay:
                     sql = "select * from View_ShowingInDay";
                     return db.LoadData(sql);
