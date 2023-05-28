@@ -45,7 +45,7 @@ namespace Cinema
                 MessageBox.Show("Login Successfully");
                 this.Hide();
                 if (Admin_cb.Checked)
-                    new Admin { admin = this.user }.ShowDialog();
+                    new Admin_Form { admin = this.user }.ShowDialog();
                 else
                     new Booking { cus = this.user }.ShowDialog();
                 base.Close();

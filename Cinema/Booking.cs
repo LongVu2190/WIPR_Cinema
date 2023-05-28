@@ -19,7 +19,7 @@ namespace Cinema
         public User cus;
 
         BL_Cinema bs = new BL_Cinema();
-        Movie movie;
+        Movie_Object movie;
         List<int> Booked_Seats = new List<int>();
         List<int> User_Booked = new List<int>();
 
@@ -49,7 +49,7 @@ namespace Cinema
         {
             User_Booked = new List<int>();
             Comment_btn.Enabled = false;
-            movie = new Movie();
+            movie = new Movie_Object();
             ClearSeatButtons();
             for (int i = 0; i <= 28; i++)
             {
