@@ -13,7 +13,7 @@ using Cinema.ReportForms;
 
 namespace Cinema
 {
-    public partial class Admin_Form : Form
+    public partial class FormAdmin : Form
     {
         BL_Admin bs = new BL_Admin();
         public User admin;
@@ -24,7 +24,7 @@ namespace Cinema
         private bool Company = false;
         private bool Room = false;
         private int row = 0;
-        public Admin_Form()
+        public FormAdmin()
         {
             InitializeComponent();
         }

@@ -455,7 +455,7 @@
             this.MaximizeBox = false;
             this.Name = "Booking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cinema";
+            this.Text = "Booking";
             this.Load += new System.EventHandler(this.Cinema_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Movies_Data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
