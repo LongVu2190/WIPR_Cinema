@@ -31,9 +31,7 @@ namespace Cinema
                 else
                 {
                     user = bs.CustomerLogin(UserID_tb.Text, Password_tb.Text);
-                }
-            
-            
+                }         
             }
             catch (Exception ex)
             {
