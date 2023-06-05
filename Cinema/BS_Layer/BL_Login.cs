@@ -15,10 +15,10 @@ namespace Cinema.BS_Layer
         DataTable myTable = new DataTable();
         string data;
         public BL_Login() { }
-        public User AdminLogin(string User_ID, string Password)
+        public User_Object AdminLogin(string User_ID, string Password)
         {
             string sql = $"select * from Fn_AdminLogin('{User_ID}', '{Password}')";
-            User admin = new User();
+            User_Object admin = new User_Object();
             myTable = db.LoadData(sql);
 
             foreach (DataRow row in myTable.Rows)
@@ -29,11 +29,11 @@ namespace Cinema.BS_Layer
             }
             return admin;
         }
-        public User CustomerLogin(string User_ID, string Password)
+        public User_Object CustomerLogin(string User_ID, string Password)
         {
             string sql = $"select * from Fn_CustomerLogin('{User_ID}', '{Password}')";
 
-            User customer = new User();
+            User_Object customer = new User_Object();
             myTable = db.LoadData(sql);
 
             foreach (DataRow row in myTable.Rows)

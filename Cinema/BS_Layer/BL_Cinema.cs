@@ -60,11 +60,11 @@ namespace Cinema.BS_Layer
             }
         }
         
-        public User UserInformation(string User_ID)
+        public User_Object UserInformation(string User_ID)
         {
             string sql = $"select * from Fn_UserInformation('{User_ID}')";
             myTable = db.LoadData(sql);
-            User cus = new User();
+            User_Object cus = new User_Object();
 
             cus.User_ID = User_ID;
             cus.Name = myTable.Rows[0]["UserName"].ToString();

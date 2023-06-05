@@ -64,19 +64,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormAdmin.cs">
+    <Compile Include="UserInterfaces\FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAdmin.Designer.cs">
+    <Compile Include="UserInterfaces\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="BS_Layer\BL_Admin.cs" />
     <Compile Include="BS_Layer\BL_Cinema.cs" />
     <Compile Include="BS_Layer\BL_Login.cs" />
-    <Compile Include="Booking.cs">
+    <Compile Include="UserInterfaces\Booking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Booking.Designer.cs">
+    <Compile Include="UserInterfaces\Booking.Designer.cs">
       <DependentUpon>Booking.cs</DependentUpon>
     </Compile>
     <Compile Include="CinemaDataSet.cs">
@@ -87,29 +87,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Comment.cs">
+    <Compile Include="UserInterfaces\Comment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comment.Designer.cs">
+    <Compile Include="UserInterfaces\Comment.Designer.cs">
       <DependentUpon>Comment.cs</DependentUpon>
     </Compile>
     <Compile Include="Enum\AdminType.cs" />
     <Compile Include="Enum\MovieType.cs" />
-    <Compile Include="Objects\User.cs" />
+    <Compile Include="Objects\User_Object.cs" />
     <Compile Include="DB_Layer\DBMain.cs" />
-    <Compile Include="Login.cs">
+    <Compile Include="UserInterfaces\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="UserInterfaces\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Movie_Object.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Register.cs">
+    <Compile Include="UserInterfaces\Register.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Register.Designer.cs">
+    <Compile Include="UserInterfaces\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportForms\AllComments.cs">
@@ -137,16 +137,16 @@
       <DependentUpon>Statement.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="FormAdmin.resx">
+    <EmbeddedResource Include="UserInterfaces\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Booking.resx">
+    <EmbeddedResource Include="UserInterfaces\Booking.resx">
       <DependentUpon>Booking.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comment.resx">
+    <EmbeddedResource Include="UserInterfaces\Comment.resx">
       <DependentUpon>Comment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="UserInterfaces\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -159,7 +159,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Register.resx">
+    <EmbeddedResource Include="UserInterfaces\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForms\AllComments.resx">
