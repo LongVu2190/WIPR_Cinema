@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Cinema" Class="CinemaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=Cinema;Persist Security Info=True;User ID=sa" SettingsObjectName="Cinema.Properties.Settings" SettingsPropertyName="CinemaConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Information_Admin" Member="User_Information" ThisKey="User_ID" OtherKey="User_ID" Type="User_Information" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Company" Member="Companies">
+    <Type Name="Company">
+      <Column Name="Company_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Company_Movie" Member="Movies" ThisKey="Company_ID" OtherKey="Company_ID" Type="Movie" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Balance" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isVIP" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_Information_Customer" Member="User_Information" ThisKey="User_ID" OtherKey="User_ID" Type="User_Information" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Movie" Member="Movies">
+    <Type Name="Movie">
+      <Column Name="Movie_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Movie_Cost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Runtime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Company_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Movie_ShowTime" Member="ShowTimes" ThisKey="Movie_ID" OtherKey="Movie_ID" Type="ShowTime" />
+      <Association Name="Company_Movie" Member="Company" ThisKey="Company_ID" OtherKey="Company_ID" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="Reservation_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Seat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Paid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Reservation_Review" Member="Reviews" ThisKey="Reservation_ID" OtherKey="Reservation_ID" Type="Review" />
+      <Association Name="ShowTime_Reservation" Member="ShowTime" ThisKey="ShowTime_ID" OtherKey="ShowTime_ID" Type="ShowTime" IsForeignKey="true" />
+      <Association Name="User_Information_Reservation" Member="User_Information" ThisKey="User_ID" OtherKey="User_ID" Type="User_Information" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Review" Member="Reviews">
+    <Type Name="Review">
+      <Column Name="Reservation_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rating_Point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Reservation_Review" Member="Reservation" ThisKey="Reservation_ID" OtherKey="Reservation_ID" Type="Reservation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShowTime" Member="ShowTimes">
+    <Type Name="ShowTime">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Movie_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Current_Seats" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quality_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ShowTime_Reservation" Member="Reservations" ThisKey="ShowTime_ID" OtherKey="ShowTime_ID" Type="Reservation" />
+      <Association Name="Movie_ShowTime" Member="Movie" ThisKey="Movie_ID" OtherKey="Movie_ID" Type="Movie" IsForeignKey="true" />
+      <Association Name="Room_ShowTime" Member="Room" ThisKey="Room_ID" OtherKey="Room_ID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="Room_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaxSeats" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Screen_Resolution" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Audio_Quality" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Room_ShowTime" Member="ShowTimes" ThisKey="Room_ID" OtherKey="Room_ID" Type="ShowTime" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Information" Member="User_Informations">
+    <Type Name="User_Information">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Information_Admin" Member="Admins" ThisKey="User_ID" OtherKey="User_ID" Type="Admin" />
+      <Association Name="User_Information_Customer" Member="Customers" ThisKey="User_ID" OtherKey="User_ID" Type="Customer" />
+      <Association Name="User_Information_Reservation" Member="Reservations" ThisKey="User_ID" OtherKey="User_ID" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_AllCustomers" Member="View_AllCustomers">
+    <Type Name="View_AllCustomer">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isVip" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_AllEmployees" Member="View_AllEmployees">
+    <Type Name="View_AllEmployee">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_ClosedShowing" Member="View_ClosedShowings">
+    <Type Name="View_ClosedShowing">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_ComingShowing" Member="View_ComingShowings">
+    <Type Name="View_ComingShowing">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_Comments" Member="View_Comments">
+    <Type Name="View_Comment">
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rating_Point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_ShowingInDay" Member="View_ShowingInDays">
+    <Type Name="View_ShowingInDay">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Sp_AddNewCompany" Method="Sp_AddNewCompany">
+    <Parameter Name="Company_ID" Parameter="company_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddNewCustomer" Method="Sp_AddNewCustomer">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddNewMovie" Method="Sp_AddNewMovie">
+    <Parameter Name="Movie_ID" Parameter="movie_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_Title" Parameter="movie_Title" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_Cost" Parameter="movie_Cost" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Runtime" Parameter="runtime" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="Main_Actor" Parameter="main_Actor" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Director" Parameter="director" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Company_ID" Parameter="company_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddNewRoom" Method="Sp_AddNewRoom">
+    <Parameter Name="Room_ID" Parameter="room_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaxSeats" Parameter="maxSeats" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Screen_Resolution" Parameter="screen_Resolution" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Audio_Quality" Parameter="audio_Quality" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddOrUpdateComment" Method="Sp_AddOrUpdateComment">
+    <Parameter Name="Reservation_ID" Parameter="reservation_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Rating_Point" Parameter="rating_Point" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Comment" Parameter="comment" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_DelReservation" Method="Sp_DelReservation">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddReservation" Method="Sp_AddReservation">
+    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ShowID" Parameter="showID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Seat" Parameter="seat" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_UpdateCompany" Method="Sp_UpdateCompany">
+    <Parameter Name="Company_ID" Parameter="company_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_UpdateMovie" Method="Sp_UpdateMovie">
+    <Parameter Name="Movie_ID" Parameter="movie_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_Title" Parameter="movie_Title" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_Cost" Parameter="movie_Cost" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Runtime" Parameter="runtime" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="Main_Actor" Parameter="main_Actor" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Director" Parameter="director" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Company_ID" Parameter="company_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_UpdateShowTime" Method="Sp_UpdateShowTime">
+    <Parameter Name="ShowTime_ID" Parameter="showTime_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_ID" Parameter="movie_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Date" Parameter="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Start_Time" Parameter="start_Time" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="Room_ID" Parameter="room_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_UpdateRoom" Method="Sp_UpdateRoom">
+    <Parameter Name="Room_ID" Parameter="room_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaxSeats" Parameter="maxSeats" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Screen_Resolution" Parameter="screen_Resolution" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Audio_Quality" Parameter="audio_Quality" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Sp_AddNewShowTime" Method="Sp_AddNewShowTime">
+    <Parameter Name="ShowTime_ID" Parameter="showTime_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Movie_ID" Parameter="movie_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Date" Parameter="date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Start_Time" Parameter="start_Time" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="Room_ID" Parameter="room_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Fn_AdminLogin" Method="Fn_AdminLogin" IsComposable="true">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_AdminLoginResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Admin_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_CustomerLogin" Method="Fn_CustomerLogin" IsComposable="true">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_CustomerLoginResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isVip" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_BookedSeats" Method="Fn_BookedSeats" IsComposable="true">
+    <Parameter Name="ShowTime_ID" Parameter="showTime_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_BookedSeatsResult">
+      <Column Name="Seat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_ShowTimeByActor" Method="Fn_ShowTimeByActor" IsComposable="true">
+    <Parameter Name="Actor_Name" Parameter="actor_Name" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_ShowTimeByActorResult">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_ShowTimeByCompany" Method="Fn_ShowTimeByCompany" IsComposable="true">
+    <Parameter Name="Company" Parameter="company" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_ShowTimeByCompanyResult">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_ShowTimeByScreen" Method="Fn_ShowTimeByScreen" IsComposable="true">
+    <Parameter Name="Screen_Resolution" Parameter="screen_Resolution" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_ShowTimeByScreenResult">
+      <Column Name="ShowTime_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Total_Cost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Main_Actor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Director" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_SumTotalCost" Method="Fn_SumTotalCost" IsComposable="true">
+    <Parameter Name="ShowTime_ID" Parameter="showTime_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Count" Parameter="count" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Fn_SumTotalCostResult">
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_UserBooked" Method="Fn_UserBooked" IsComposable="true">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_UserBookedResult">
+      <Column Name="Reservation_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Seat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Start_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="End_Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Room" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_UserCommented" Method="Fn_UserCommented" IsComposable="true">
+    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_UserCommentedResult">
+      <Column Name="Reservation_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Movie_Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Rating_Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Fn_UserInformation" Method="Fn_UserInformation" IsComposable="true">
+    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Fn_UserInformationResult">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isVIP" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Expense" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

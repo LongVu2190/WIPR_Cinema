@@ -1,0 +1,1543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_ID" />
+          </Key>
+          <Property Name="Company_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="Point" />
+            <PropertyRef Name="isVIP" />
+          </Key>
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Balance" Type="int" Nullable="false" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="isVIP" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_Cost" Type="int" Nullable="false" />
+          <Property Name="Runtime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Company_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Reservation_ID" />
+          </Key>
+          <Property Name="Reservation_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seat" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.Review' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Reservation_ID" />
+            <PropertyRef Name="Rating_Point" />
+          </Key>
+          <Property Name="Reservation_ID" Type="int" Nullable="false" />
+          <Property Name="Rating_Point" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_ID" />
+          </Key>
+          <Property Name="Room_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaxSeats" Type="int" Nullable="false" />
+          <Property Name="Screen_Resolution" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Audio_Quality" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShowTime">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="End_Time" Type="time" Precision="7" />
+          <Property Name="Current_Seats" Type="int" Nullable="false" />
+          <Property Name="Quality_Cost" Type="int" />
+          <Property Name="Total_Cost" Type="int" />
+          <Property Name="Room_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Information">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_AllCustomers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_AllCustomers">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Point" />
+            <PropertyRef Name="isVip" />
+          </Key>
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="isVip" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_AllEmployees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_AllEmployees">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_ClosedShowing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_ClosedShowing">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total_Cost" Type="int" />
+          <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="End_Time" Type="time" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_ComingShowing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_ComingShowing">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total_Cost" Type="int" />
+          <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="End_Time" Type="time" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Comments">
+          <Key>
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Rating_Point" />
+          </Key>
+          <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rating_Point" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cinema.dbo.View_ShowingInDay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_ShowingInDay">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total_Cost" Type="int" />
+          <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="End_Time" Type="time" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Admin_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_ID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_ShowTime">
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShowTime">
+              <PropertyRef Name="ShowTime_ID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="ShowTime_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Reservation_ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Reservation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowTime_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="ShowTime">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowTime_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_ID" />
+            </Principal>
+            <Dependent Role="ShowTime">
+              <PropertyRef Name="Room_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Fn_AdminLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="User_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+                <Property Name="Admin_Role" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_BookedSeats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShowTime_ID" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Seat" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_CustomerLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="User_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+                <Property Name="Balance" Type="int" />
+                <Property Name="Point" Type="int" />
+                <Property Name="isVip" Type="bit" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_ShowTimeByActor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Actor_Name" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" />
+                <Property Name="Total_Cost" Type="int" />
+                <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" />
+                <Property Name="Director" Type="nvarchar" MaxLength="50" />
+                <Property Name="Date" Type="date" />
+                <Property Name="Start_Time" Type="time" Precision="7" />
+                <Property Name="End_Time" Type="time" Precision="7" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_ShowTimeByCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Company" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" />
+                <Property Name="Total_Cost" Type="int" />
+                <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" />
+                <Property Name="Director" Type="nvarchar" MaxLength="50" />
+                <Property Name="Date" Type="date" />
+                <Property Name="Start_Time" Type="time" Precision="7" />
+                <Property Name="End_Time" Type="time" Precision="7" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_ShowTimeByScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Screen_Resolution" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ShowTime_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" />
+                <Property Name="Total_Cost" Type="int" />
+                <Property Name="Main_Actor" Type="nvarchar" MaxLength="50" />
+                <Property Name="Director" Type="nvarchar" MaxLength="50" />
+                <Property Name="Date" Type="date" />
+                <Property Name="Start_Time" Type="time" Precision="7" />
+                <Property Name="End_Time" Type="time" Precision="7" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_SumTotalCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShowTime_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="User_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Total" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_UserBooked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Reservation_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" />
+                <Property Name="Seat" Type="int" />
+                <Property Name="Date" Type="date" />
+                <Property Name="Start_Time" Type="time" Precision="7" />
+                <Property Name="End_Time" Type="time" Precision="7" />
+                <Property Name="Room" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_UserCommented" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Reservation_ID" Type="nvarchar" MaxLength="50" />
+                <Property Name="Movie_Title" Type="nvarchar" MaxLength="50" />
+                <Property Name="Rating_Point" Type="int" />
+                <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Fn_UserInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+                <Property Name="Balance" Type="int" />
+                <Property Name="Point" Type="int" />
+                <Property Name="isVIP" Type="bit" />
+                <Property Name="Expense" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Sp_AddNewCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Company_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddNewCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddNewMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Movie_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_Cost" Type="int" Mode="In" />
+          <Parameter Name="Runtime" Type="time" Mode="In" />
+          <Parameter Name="Main_Actor" Type="nvarchar" Mode="In" />
+          <Parameter Name="Director" Type="nvarchar" Mode="In" />
+          <Parameter Name="Company_ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddNewRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Room_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxSeats" Type="int" Mode="In" />
+          <Parameter Name="Screen_Resolution" Type="nvarchar" Mode="In" />
+          <Parameter Name="Audio_Quality" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddNewShowTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShowTime_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Start_Time" Type="time" Mode="In" />
+          <Parameter Name="Room_ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddOrUpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Reservation_ID" Type="int" Mode="In" />
+          <Parameter Name="Rating_Point" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_AddReservation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShowID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Seat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_DelReservation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_UpdateCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Company_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_UpdateMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Movie_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_Cost" Type="int" Mode="In" />
+          <Parameter Name="Runtime" Type="time" Mode="In" />
+          <Parameter Name="Main_Actor" Type="nvarchar" Mode="In" />
+          <Parameter Name="Director" Type="nvarchar" Mode="In" />
+          <Parameter Name="Company_ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_UpdateRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Room_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxSeats" Type="int" Mode="In" />
+          <Parameter Name="Screen_Resolution" Type="nvarchar" Mode="In" />
+          <Parameter Name="Audio_Quality" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_UpdateShowTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShowTime_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Movie_ID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Date" Type="date" Mode="In" />
+          <Parameter Name="Start_Time" Type="time" Mode="In" />
+          <Parameter Name="Room_ID" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="CinemaModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShowTime" EntityType="Self.ShowTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Information" EntityType="Self.User_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin].[User_ID] AS [User_ID], 
+    [Admin].[Password] AS [Password], 
+    [Admin].[Role] AS [Role]
+    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customer].[User_ID] AS [User_ID], 
+    [Customer].[Password] AS [Password], 
+    [Customer].[Balance] AS [Balance], 
+    [Customer].[Point] AS [Point], 
+    [Customer].[isVIP] AS [isVIP]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Review" EntityType="Self.Review" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Review].[Reservation_ID] AS [Reservation_ID], 
+    [Review].[Rating_Point] AS [Rating_Point], 
+    [Review].[Comment] AS [Comment]
+    FROM [dbo].[Review] AS [Review]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_AllCustomers" EntityType="Self.View_AllCustomers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_AllCustomers].[User_ID] AS [User_ID], 
+    [View_AllCustomers].[Name] AS [Name], 
+    [View_AllCustomers].[Email] AS [Email], 
+    [View_AllCustomers].[Address] AS [Address], 
+    [View_AllCustomers].[Phone] AS [Phone], 
+    [View_AllCustomers].[Point] AS [Point], 
+    [View_AllCustomers].[isVip] AS [isVip]
+    FROM [dbo].[View_AllCustomers] AS [View_AllCustomers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_AllEmployees" EntityType="Self.View_AllEmployees" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_AllEmployees].[User_ID] AS [User_ID], 
+    [View_AllEmployees].[Name] AS [Name], 
+    [View_AllEmployees].[Email] AS [Email], 
+    [View_AllEmployees].[Address] AS [Address], 
+    [View_AllEmployees].[Phone] AS [Phone], 
+    [View_AllEmployees].[Role] AS [Role]
+    FROM [dbo].[View_AllEmployees] AS [View_AllEmployees]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_ClosedShowing" EntityType="Self.View_ClosedShowing" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ClosedShowing].[ShowTime_ID] AS [ShowTime_ID], 
+    [View_ClosedShowing].[Movie_Title] AS [Movie_Title], 
+    [View_ClosedShowing].[Total_Cost] AS [Total_Cost], 
+    [View_ClosedShowing].[Main_Actor] AS [Main_Actor], 
+    [View_ClosedShowing].[Director] AS [Director], 
+    [View_ClosedShowing].[Date] AS [Date], 
+    [View_ClosedShowing].[Start_Time] AS [Start_Time], 
+    [View_ClosedShowing].[End_Time] AS [End_Time]
+    FROM [dbo].[View_ClosedShowing] AS [View_ClosedShowing]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_ComingShowing" EntityType="Self.View_ComingShowing" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ComingShowing].[ShowTime_ID] AS [ShowTime_ID], 
+    [View_ComingShowing].[Movie_Title] AS [Movie_Title], 
+    [View_ComingShowing].[Total_Cost] AS [Total_Cost], 
+    [View_ComingShowing].[Main_Actor] AS [Main_Actor], 
+    [View_ComingShowing].[Director] AS [Director], 
+    [View_ComingShowing].[Date] AS [Date], 
+    [View_ComingShowing].[Start_Time] AS [Start_Time], 
+    [View_ComingShowing].[End_Time] AS [End_Time]
+    FROM [dbo].[View_ComingShowing] AS [View_ComingShowing]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Comments" EntityType="Self.View_Comments" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Comments].[Movie_Title] AS [Movie_Title], 
+    [View_Comments].[User_ID] AS [User_ID], 
+    [View_Comments].[Rating_Point] AS [Rating_Point], 
+    [View_Comments].[Comment] AS [Comment]
+    FROM [dbo].[View_Comments] AS [View_Comments]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_ShowingInDay" EntityType="Self.View_ShowingInDay" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ShowingInDay].[ShowTime_ID] AS [ShowTime_ID], 
+    [View_ShowingInDay].[Movie_Title] AS [Movie_Title], 
+    [View_ShowingInDay].[Total_Cost] AS [Total_Cost], 
+    [View_ShowingInDay].[Main_Actor] AS [Main_Actor], 
+    [View_ShowingInDay].[Director] AS [Director], 
+    [View_ShowingInDay].[Date] AS [Date], 
+    [View_ShowingInDay].[Start_Time] AS [Start_Time], 
+    [View_ShowingInDay].[End_Time] AS [End_Time]
+    FROM [dbo].[View_ShowingInDay] AS [View_ShowingInDay]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Admin_User_Information" Association="Self.FK_Admin_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User_Information" Association="Self.FK_Customer_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Company" Association="Self.FK_Movie_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_ShowTime" Association="Self.FK_Reservation_ShowTime">
+            <End Role="ShowTime" EntitySet="ShowTime" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_User_Information" Association="Self.FK_Reservation_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Reservation" Association="Self.FK_Review_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowTime_Movie" Association="Self.FK_ShowTime_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="ShowTime" EntitySet="ShowTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowTime_Room" Association="Self.FK_ShowTime_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="ShowTime" EntitySet="ShowTime" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="Fn_AdminLogin_Result">
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Admin_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="Fn_BookedSeats_Result">
+          <Property Name="Seat" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="Fn_CustomerLogin_Result">
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Int32" />
+          <Property Name="Point" Type="Int32" />
+          <Property Name="isVip" Type="Boolean" />
+        </ComplexType>
+        <ComplexType Name="Fn_ShowTimeByActor_Result">
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Start_Time" Type="Time" />
+          <Property Name="End_Time" Type="Time" />
+        </ComplexType>
+        <ComplexType Name="Fn_ShowTimeByCompany_Result">
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Start_Time" Type="Time" />
+          <Property Name="End_Time" Type="Time" />
+        </ComplexType>
+        <ComplexType Name="Fn_ShowTimeByScreen_Result">
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Start_Time" Type="Time" />
+          <Property Name="End_Time" Type="Time" />
+        </ComplexType>
+        <ComplexType Name="Fn_SumTotalCost_Result">
+          <Property Name="Total" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="Fn_UserBooked_Result">
+          <Property Name="Reservation_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seat" Type="Int32" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="Start_Time" Type="Time" />
+          <Property Name="End_Time" Type="Time" />
+          <Property Name="Room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="Fn_UserCommented_Result">
+          <Property Name="Reservation_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rating_Point" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="Fn_UserInformation_Result">
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Int32" />
+          <Property Name="Point" Type="Int32" />
+          <Property Name="isVIP" Type="Boolean" />
+          <Property Name="Expense" Type="Int32" />
+        </ComplexType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_ID" />
+          </Key>
+          <Property Name="Company_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Movies" Relationship="Self.FK_Movie_Company" FromRole="Company" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_Cost" Type="Int32" Nullable="false" />
+          <Property Name="Runtime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Company_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Movie_Company" FromRole="Movie" ToRole="Company" />
+          <NavigationProperty Name="ShowTimes" Relationship="Self.FK_ShowTime_Movie" FromRole="Movie" ToRole="ShowTime" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Reservation_ID" />
+          </Key>
+          <Property Name="Reservation_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Seat" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Int32" />
+          <NavigationProperty Name="ShowTime" Relationship="Self.FK_Reservation_ShowTime" FromRole="Reservation" ToRole="ShowTime" />
+          <NavigationProperty Name="User_Information" Relationship="Self.FK_Reservation_User_Information" FromRole="Reservation" ToRole="User_Information" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Reservation" FromRole="Reservation" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_ID" />
+          </Key>
+          <Property Name="Room_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxSeats" Type="Int32" Nullable="false" />
+          <Property Name="Screen_Resolution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Audio_Quality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ShowTimes" Relationship="Self.FK_ShowTime_Room" FromRole="Room" ToRole="ShowTime" />
+        </EntityType>
+        <EntityType Name="ShowTime">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="End_Time" Type="Time" Precision="7" />
+          <Property Name="Current_Seats" Type="Int32" Nullable="false" />
+          <Property Name="Quality_Cost" Type="Int32" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Room_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK_ShowTime_Movie" FromRole="ShowTime" ToRole="Movie" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_ShowTime" FromRole="ShowTime" ToRole="Reservation" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_ShowTime_Room" FromRole="ShowTime" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="User_Information">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_User_Information" FromRole="User_Information" ToRole="Reservation" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_User_Information" FromRole="User_Information" ToRole="Admin" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_User_Information" FromRole="User_Information" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User_Information" Relationship="Self.FK_Admin_User_Information" FromRole="Admin" ToRole="User_Information" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="Point" />
+            <PropertyRef Name="isVIP" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="Int32" Nullable="false" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="isVIP" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User_Information" Relationship="Self.FK_Customer_User_Information" FromRole="Customer" ToRole="User_Information" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Reservation_ID" />
+            <PropertyRef Name="Rating_Point" />
+          </Key>
+          <Property Name="Reservation_ID" Type="Int32" Nullable="false" />
+          <Property Name="Rating_Point" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Review_Reservation" FromRole="Review" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="View_AllCustomers">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Point" />
+            <PropertyRef Name="isVip" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="isVip" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_AllEmployees">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_ClosedShowing">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="End_Time" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="View_ComingShowing">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="End_Time" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="View_Comments">
+          <Key>
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Rating_Point" />
+          </Key>
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating_Point" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_ShowingInDay">
+          <Key>
+            <PropertyRef Name="ShowTime_ID" />
+            <PropertyRef Name="Movie_Title" />
+            <PropertyRef Name="Main_Actor" />
+            <PropertyRef Name="Director" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Start_Time" />
+          </Key>
+          <Property Name="ShowTime_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Movie_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Total_Cost" Type="Int32" />
+          <Property Name="Main_Actor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="End_Time" Type="Time" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Movie_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_ID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowTime_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="ShowTime">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_ShowTime">
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShowTime">
+              <PropertyRef Name="ShowTime_ID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="ShowTime_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Reservation_ID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Reservation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShowTime_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="ShowTime" Type="Self.ShowTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_ID" />
+            </Principal>
+            <Dependent Role="ShowTime">
+              <PropertyRef Name="Room_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User_Information">
+          <End Role="User_Information" Type="Self.User_Information" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Information">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CinemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="ShowTimes" EntityType="Self.ShowTime" />
+          <EntitySet Name="User_Information" EntityType="Self.User_Information" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="View_AllCustomers" EntityType="Self.View_AllCustomers" />
+          <EntitySet Name="View_AllEmployees" EntityType="Self.View_AllEmployees" />
+          <EntitySet Name="View_ClosedShowing" EntityType="Self.View_ClosedShowing" />
+          <EntitySet Name="View_ComingShowing" EntityType="Self.View_ComingShowing" />
+          <EntitySet Name="View_Comments" EntityType="Self.View_Comments" />
+          <EntitySet Name="View_ShowingInDay" EntityType="Self.View_ShowingInDay" />
+          <AssociationSet Name="FK_Movie_Company" Association="Self.FK_Movie_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowTime_Movie" Association="Self.FK_ShowTime_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="ShowTime" EntitySet="ShowTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_ShowTime" Association="Self.FK_Reservation_ShowTime">
+            <End Role="ShowTime" EntitySet="ShowTimes" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_User_Information" Association="Self.FK_Reservation_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Reservation" Association="Self.FK_Review_Reservation">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShowTime_Room" Association="Self.FK_ShowTime_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="ShowTime" EntitySet="ShowTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_User_Information" Association="Self.FK_Admin_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User_Information" Association="Self.FK_Customer_User_Information">
+            <End Role="User_Information" EntitySet="User_Information" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <FunctionImport Name="Fn_AdminLogin" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_AdminLogin_Result)">
+            <Parameter Name="User_ID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_BookedSeats" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_BookedSeats_Result)">
+          <Parameter Name="ShowTime_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_CustomerLogin" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_CustomerLogin_Result)">
+            <Parameter Name="User_ID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_ShowTimeByActor" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_ShowTimeByActor_Result)">
+          <Parameter Name="Actor_Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_ShowTimeByCompany" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_ShowTimeByCompany_Result)">
+          <Parameter Name="Company" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_ShowTimeByScreen" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_ShowTimeByScreen_Result)">
+          <Parameter Name="Screen_Resolution" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_SumTotalCost" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_SumTotalCost_Result)">
+            <Parameter Name="ShowTime_ID" Mode="In" Type="String" />
+            <Parameter Name="User_ID" Mode="In" Type="String" />
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_UserBooked" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_UserBooked_Result)">
+          <Parameter Name="User_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_UserCommented" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_UserCommented_Result)">
+          <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Fn_UserInformation" IsComposable="true" ReturnType="Collection(CinemaModel.Fn_UserInformation_Result)">
+          <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddNewCompany">
+            <Parameter Name="Company_ID" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddNewCustomer">
+            <Parameter Name="User_ID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddNewMovie">
+            <Parameter Name="Movie_ID" Mode="In" Type="String" />
+            <Parameter Name="Movie_Title" Mode="In" Type="String" />
+            <Parameter Name="Movie_Cost" Mode="In" Type="Int32" />
+            <Parameter Name="Runtime" Mode="In" Type="Time" />
+            <Parameter Name="Main_Actor" Mode="In" Type="String" />
+            <Parameter Name="Director" Mode="In" Type="String" />
+            <Parameter Name="Company_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddNewRoom">
+            <Parameter Name="Room_ID" Mode="In" Type="String" />
+            <Parameter Name="MaxSeats" Mode="In" Type="Int32" />
+            <Parameter Name="Screen_Resolution" Mode="In" Type="String" />
+            <Parameter Name="Audio_Quality" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddNewShowTime">
+            <Parameter Name="ShowTime_ID" Mode="In" Type="String" />
+            <Parameter Name="Movie_ID" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Start_Time" Mode="In" Type="Time" />
+            <Parameter Name="Room_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddOrUpdateComment">
+            <Parameter Name="Reservation_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Rating_Point" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AddReservation">
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="ShowID" Mode="In" Type="String" />
+            <Parameter Name="Seat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_DelReservation">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_UpdateCompany">
+            <Parameter Name="Company_ID" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_UpdateMovie">
+            <Parameter Name="Movie_ID" Mode="In" Type="String" />
+            <Parameter Name="Movie_Title" Mode="In" Type="String" />
+            <Parameter Name="Movie_Cost" Mode="In" Type="Int32" />
+            <Parameter Name="Runtime" Mode="In" Type="Time" />
+            <Parameter Name="Main_Actor" Mode="In" Type="String" />
+            <Parameter Name="Director" Mode="In" Type="String" />
+            <Parameter Name="Company_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_UpdateRoom">
+            <Parameter Name="Room_ID" Mode="In" Type="String" />
+            <Parameter Name="MaxSeats" Mode="In" Type="Int32" />
+            <Parameter Name="Screen_Resolution" Mode="In" Type="String" />
+            <Parameter Name="Audio_Quality" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_UpdateShowTime">
+            <Parameter Name="ShowTime_ID" Mode="In" Type="String" />
+            <Parameter Name="Movie_ID" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Start_Time" Mode="In" Type="Time" />
+            <Parameter Name="Room_ID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CinemaModelStoreContainer" CdmEntityContainer="CinemaEntities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="CinemaModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Company_ID" ColumnName="Company_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="CinemaModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Movie_Cost" ColumnName="Movie_Cost" />
+                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Company_ID" ColumnName="Company_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="CinemaModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Seat" ColumnName="Seat" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="CinemaModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+                <ScalarProperty Name="MaxSeats" ColumnName="MaxSeats" />
+                <ScalarProperty Name="Screen_Resolution" ColumnName="Screen_Resolution" />
+                <ScalarProperty Name="Audio_Quality" ColumnName="Audio_Quality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShowTimes">
+            <EntityTypeMapping TypeName="CinemaModel.ShowTime">
+              <MappingFragment StoreEntitySet="ShowTime">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Current_Seats" ColumnName="Current_Seats" />
+                <ScalarProperty Name="Quality_Cost" ColumnName="Quality_Cost" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Information">
+            <EntityTypeMapping TypeName="CinemaModel.User_Information">
+              <MappingFragment StoreEntitySet="User_Information">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CinemaModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CinemaModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="isVIP" ColumnName="isVIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="CinemaModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation_ID" />
+                <ScalarProperty Name="Rating_Point" ColumnName="Rating_Point" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_AllCustomers">
+            <EntityTypeMapping TypeName="CinemaModel.View_AllCustomers">
+              <MappingFragment StoreEntitySet="View_AllCustomers">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="isVip" ColumnName="isVip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_AllEmployees">
+            <EntityTypeMapping TypeName="CinemaModel.View_AllEmployees">
+              <MappingFragment StoreEntitySet="View_AllEmployees">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ClosedShowing">
+            <EntityTypeMapping TypeName="CinemaModel.View_ClosedShowing">
+              <MappingFragment StoreEntitySet="View_ClosedShowing">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ComingShowing">
+            <EntityTypeMapping TypeName="CinemaModel.View_ComingShowing">
+              <MappingFragment StoreEntitySet="View_ComingShowing">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Comments">
+            <EntityTypeMapping TypeName="CinemaModel.View_Comments">
+              <MappingFragment StoreEntitySet="View_Comments">
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Rating_Point" ColumnName="Rating_Point" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ShowingInDay">
+            <EntityTypeMapping TypeName="CinemaModel.View_ShowingInDay">
+              <MappingFragment StoreEntitySet="View_ShowingInDay">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_AdminLogin" FunctionImportName="Fn_AdminLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_AdminLogin_Result">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Admin_Role" ColumnName="Admin_Role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_BookedSeats" FunctionImportName="Fn_BookedSeats">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_BookedSeats_Result">
+                <ScalarProperty Name="Seat" ColumnName="Seat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_CustomerLogin" FunctionImportName="Fn_CustomerLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_CustomerLogin_Result">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="isVip" ColumnName="isVip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_ShowTimeByActor" FunctionImportName="Fn_ShowTimeByActor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_ShowTimeByActor_Result">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_ShowTimeByCompany" FunctionImportName="Fn_ShowTimeByCompany">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_ShowTimeByCompany_Result">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_ShowTimeByScreen" FunctionImportName="Fn_ShowTimeByScreen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_ShowTimeByScreen_Result">
+                <ScalarProperty Name="ShowTime_ID" ColumnName="ShowTime_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="Main_Actor" ColumnName="Main_Actor" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_SumTotalCost" FunctionImportName="Fn_SumTotalCost">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_SumTotalCost_Result">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_UserBooked" FunctionImportName="Fn_UserBooked">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_UserBooked_Result">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Seat" ColumnName="Seat" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_UserCommented" FunctionImportName="Fn_UserCommented">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_UserCommented_Result">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation_ID" />
+                <ScalarProperty Name="Movie_Title" ColumnName="Movie_Title" />
+                <ScalarProperty Name="Rating_Point" ColumnName="Rating_Point" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="CinemaModel.Store.Fn_UserInformation" FunctionImportName="Fn_UserInformation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaModel.Fn_UserInformation_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="isVIP" ColumnName="isVIP" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_AddNewCompany" FunctionName="CinemaModel.Store.Sp_AddNewCompany" />
+          <FunctionImportMapping FunctionImportName="Sp_AddNewCustomer" FunctionName="CinemaModel.Store.Sp_AddNewCustomer" />
+          <FunctionImportMapping FunctionImportName="Sp_AddNewMovie" FunctionName="CinemaModel.Store.Sp_AddNewMovie" />
+          <FunctionImportMapping FunctionImportName="Sp_AddNewRoom" FunctionName="CinemaModel.Store.Sp_AddNewRoom" />
+          <FunctionImportMapping FunctionImportName="Sp_AddNewShowTime" FunctionName="CinemaModel.Store.Sp_AddNewShowTime" />
+          <FunctionImportMapping FunctionImportName="Sp_AddOrUpdateComment" FunctionName="CinemaModel.Store.Sp_AddOrUpdateComment" />
+          <FunctionImportMapping FunctionImportName="Sp_AddReservation" FunctionName="CinemaModel.Store.Sp_AddReservation" />
+          <FunctionImportMapping FunctionImportName="Sp_DelReservation" FunctionName="CinemaModel.Store.Sp_DelReservation" />
+          <FunctionImportMapping FunctionImportName="Sp_UpdateCompany" FunctionName="CinemaModel.Store.Sp_UpdateCompany" />
+          <FunctionImportMapping FunctionImportName="Sp_UpdateMovie" FunctionName="CinemaModel.Store.Sp_UpdateMovie" />
+          <FunctionImportMapping FunctionImportName="Sp_UpdateRoom" FunctionName="CinemaModel.Store.Sp_UpdateRoom" />
+          <FunctionImportMapping FunctionImportName="Sp_UpdateShowTime" FunctionName="CinemaModel.Store.Sp_UpdateShowTime" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

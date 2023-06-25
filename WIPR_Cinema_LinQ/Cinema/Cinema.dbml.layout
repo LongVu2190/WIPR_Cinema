@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 15.625" name="Cinema">
+  <DataContextMoniker Name="/CinemaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3d6a6ff1-24b7-4a58-aaa5-0123fbcc4039" absoluteBounds="3.5, 2.375, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/CinemaDataContext/Admin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e7a6b03c-1ecf-42b3-9251-5330eef36356" absoluteBounds="3.515, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6646b6e7-2e9d-4496-b719-74d91d131b35" absoluteBounds="1.75, 13.625, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/CinemaDataContext/Company" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8abd42ca-50cb-4282-98fb-42b52a8a09c5" absoluteBounds="1.7650000000000001, 14.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="202ca306-25de-4997-8793-95c04973c463" absoluteBounds="3.5, 4.5, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/CinemaDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad9b76e9-1ac5-4a5b-8944-f052ed9f3767" absoluteBounds="3.515, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5082b121-7ca6-4c77-b627-0445631f56a2" absoluteBounds="1, 10.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CinemaDataContext/Movie" />
+      <nestedChildShapes>
+        <elementListCompartment Id="688e3ff9-ae45-4bb8-9660-96ac50ae5e9c" absoluteBounds="1.0150000000000001, 10.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b80fd23d-a4fe-4a78-baa7-8faef46503e7" absoluteBounds="6.5, 3.5, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/CinemaDataContext/Reservation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63362b73-22e0-4b26-93a1-4b2ad7cfe763" absoluteBounds="6.515, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4475d452-35ad-40e5-a798-f7a4eaf43177" absoluteBounds="9.25, 3.625, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/CinemaDataContext/Review" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b60d0363-05c4-4bca-b02c-a48201c50389" absoluteBounds="9.265, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="10ea498b-97e8-4e7c-8a53-e9bd5d7266a6" absoluteBounds="3.75, 9.125, 2, 2.5401025390624987">
+      <DataClassMoniker Name="/CinemaDataContext/ShowTime" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f9aae881-3857-4c85-a9c7-f5cf5b1ca7dd" absoluteBounds="3.765, 9.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9c7274d-2eb4-4409-937e-1f1dfe4dbeac" absoluteBounds="1, 8.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CinemaDataContext/Room" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a9da47f0-e2a0-4d20-a8b2-8bbbfa057151" absoluteBounds="1.0150000000000001, 8.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bbbaa755-35e3-4d63-b519-54fd1ee0afe4" absoluteBounds="0.75, 3.5, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/CinemaDataContext/User_Information" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f20b5d56-f723-45d4-8cde-33ecb5b7a83d" absoluteBounds="0.765, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.375 : 13.625); (2.375 : 12.6554996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/Company/Company_Movie" />
+      <nodes>
+        <classShapeMoniker Id="6646b6e7-2e9d-4496-b719-74d91d131b35" />
+        <classShapeMoniker Id="5082b121-7ca6-4c77-b627-0445631f56a2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 4.31814697265625); (9.25 : 4.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/Reservation/Reservation_Review" />
+      <nodes>
+        <classShapeMoniker Id="b80fd23d-a4fe-4a78-baa7-8faef46503e7" />
+        <classShapeMoniker Id="4475d452-35ad-40e5-a798-f7a4eaf43177" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.65625 : 9.125); (5.65625 : 4.05393121582031); (6.5 : 4.05393121582031)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/ShowTime/ShowTime_Reservation" />
+      <nodes>
+        <classShapeMoniker Id="10ea498b-97e8-4e7c-8a53-e9bd5d7266a6" />
+        <classShapeMoniker Id="b80fd23d-a4fe-4a78-baa7-8faef46503e7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 11.0825512695312); (3.75 : 11.0825512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/Movie/Movie_ShowTime" />
+      <nodes>
+        <classShapeMoniker Id="5082b121-7ca6-4c77-b627-0445631f56a2" />
+        <classShapeMoniker Id="10ea498b-97e8-4e7c-8a53-e9bd5d7266a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 9.41429768880208); (3.75 : 9.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/Room/Room_ShowTime" />
+      <nodes>
+        <classShapeMoniker Id="e9c7274d-2eb4-4409-937e-1f1dfe4dbeac" />
+        <classShapeMoniker Id="10ea498b-97e8-4e7c-8a53-e9bd5d7266a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 3.5); (1.75 : 2.9374995); (3.5 : 2.9374995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/User_Information/User_Information_Admin" />
+      <nodes>
+        <classShapeMoniker Id="bbbaa755-35e3-4d63-b519-54fd1ee0afe4" />
+        <classShapeMoniker Id="3d6a6ff1-24b7-4a58-aaa5-0123fbcc4039" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.88544840494792); (3.5 : 4.88544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/User_Information/User_Information_Customer" />
+      <nodes>
+        <classShapeMoniker Id="bbbaa755-35e3-4d63-b519-54fd1ee0afe4" />
+        <classShapeMoniker Id="202ca306-25de-4997-8793-95c04973c463" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.34657348632813); (5.57291666666667 : 4.34657348632812 : JumpStart); (5.73958333333333 : 4.34657348632813 : JumpEnd); (6.5 : 4.34657348632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CinemaDataContext/User_Information/User_Information_Reservation" />
+      <nodes>
+        <classShapeMoniker Id="bbbaa755-35e3-4d63-b519-54fd1ee0afe4" />
+        <classShapeMoniker Id="b80fd23d-a4fe-4a78-baa7-8faef46503e7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="40b4883f-175e-4012-93bb-e047f51ff7ee" absoluteBounds="6.375, 6.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CinemaDataContext/View_AllCustomer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e5a245e-8e55-4ed1-aa68-7b1ba13d09ff" absoluteBounds="6.39, 7.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ee44c190-35f6-4865-a309-6acfca26d62b" absoluteBounds="6.375, 0.75, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/CinemaDataContext/View_AllEmployee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dec013d5-d315-405c-852b-e16a1949378d" absoluteBounds="6.39, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e7f35f7-ff18-42db-af86-d85075a53f16" absoluteBounds="9.375, 6.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/CinemaDataContext/View_ClosedShowing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99662188-236f-4148-a808-75eea7234b38" absoluteBounds="9.39, 7.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7f73126e-fba3-4dd9-860e-72a65e43a74b" absoluteBounds="6.375, 10.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/CinemaDataContext/View_ComingShowing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a99b67ec-c902-4647-a046-788cede59465" absoluteBounds="6.39, 11.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d570201a-ebda-4752-bd39-1a809f4576df" absoluteBounds="9.375, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CinemaDataContext/View_Comment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50227a4d-fc89-44cc-aae3-221cf83f5b30" absoluteBounds="9.39, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9e6e430d-3639-4ac4-8683-ca60b3ef48d1" absoluteBounds="9.375, 10.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/CinemaDataContext/View_ShowingInDay" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cd30e8ad-1de8-4b97-917f-d87a7a70a699" absoluteBounds="9.39, 11.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
